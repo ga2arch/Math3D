@@ -29,7 +29,8 @@ int main(int argc, const char * argv[]) {
     Vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
     Vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
 
-    auto v3 = v1 + v2;
+    //auto v3 = v1 + v2;
+    v1 += v2;
     
 //    Vector v2(1.0f, 1.0f, 1.0f, 1.2f);
 //    
@@ -37,7 +38,7 @@ int main(int argc, const char * argv[]) {
 //    
     __declspec(align(16)) float A[4];
 //    
-   _mm_store_ps(&A[0], v3());
+   _mm_store_ps(&A[0], v1());
 //    
     printf("%g %g %g %g\n", A[3], A[2], A[1], A[0]);
 

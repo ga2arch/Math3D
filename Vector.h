@@ -26,6 +26,11 @@ public:
         return Derived(_mm_add_ps(data, d()));
     }
     
+    Derived& operator+=(const Derived& d) {
+        data = _mm_add_ps(data, d());
+        return static_cast<Derived&>(*this);
+    }
+    
 protected:
     __m128 data;
     
