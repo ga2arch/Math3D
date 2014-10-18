@@ -8,10 +8,8 @@
 
 #include <iostream>
 #include <cmath>
-
-#include "Functions.h"
-
-
+#include <xmmintrin.h>
+#include <x86intrin.h>
 
 // Curiously Recurring Template Pattern (CRTP)
 // http://kaba.hilvi.org/pastel/techniques_specialization.htm
@@ -19,8 +17,6 @@
 template <std::size_t N, typename Derived>
 class BaseVector {
     
-    template<typename T> friend T normalize(const T& d);
-
 public:
     explicit BaseVector(const __m128& v): data(v) {}
     
@@ -67,8 +63,6 @@ public:
         auto sum = _mm_hadd_ps(exp, exp);
         return _mm_hadd_ps(sum, sum);
     }
-    
-    
     
 protected:
     __m128 data;

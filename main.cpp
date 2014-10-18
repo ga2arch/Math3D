@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <chrono>
-#include "Vector.h"
+#include "Functions.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -30,16 +30,17 @@ int main(int argc, const char * argv[]) {
     
     Vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
     
-    Vec3 v2(1.0f, 2.0f, 3.0f);
+    Vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
     //Vec3 v3(1.0f, 2.0f, 3.0f);
 
     //auto v3 = v1 + v2;
     auto v3 = v2;
-    
-    
+
     auto t1 = high_resolution_clock::now();
     
     auto m = normalize(v3);
+    auto b = dot(v1, v2);
+    auto c = 1.0f*v1;
     
     auto t2 = high_resolution_clock::now();
     
@@ -53,7 +54,7 @@ int main(int argc, const char * argv[]) {
 //    
     __declspec(align(16)) float A[4];
 //    
-   _mm_store_ps(&A[0], m());
+   _mm_store_ps(&A[0], b);
 //    
     printf("%g %g %g %g\n", A[3], A[2], A[1], A[0]);
 
