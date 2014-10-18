@@ -53,9 +53,6 @@ public:
         
         // sqrt(3+7, 3+7, 3+7, 3+7) = sqrt(10, 10, 10, 10)
         return _mm_sqrt_ps(_mm_hadd_ps(sum, sum));
-
-        //__declspec(align(16)) float A[4];
-        //_mm_store_ps(&A[0], result);
     }
     
     __m128 squared_magnitude() const {

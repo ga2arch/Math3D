@@ -23,6 +23,27 @@ inline __m128 dot(const Vector<N>& v1, const Vector<N>& v2) {
 }
 
 template <size_t N>
+inline __m128 cross(const Vector<N>& v1, const Vector<N>& v2) {
+    auto sh1 = _mm_shuffle_ps(v1(), v1(), _MM_SHUFFLE(0,3,1,2));
+    auto sh2 = _mm_shuffle_ps(v2(), v2(), _MM_SHUFFLE(0,2,3,1));
+    
+    auto mul1 = _mm_mul_ps(sh1, sh2);
+    
+    sh1 = _mm_shuffle_ps(v2(), v2(), _MM_SHUFFLE(0,3,1,2));
+    sh2 = _mm_shuffle_ps(v1(), v1(), _MM_SHUFFLE(0,2,3,1));
+    
+    auto mul2 = _mm_mul_ps(sh1, sh2);
+    
+    return _mm_sub_ps(mul1, mul2);
+    
+    //__declspec(align(16)) float A[4];
+    //_mm_store_ps(&A[0], sub);
+    
+    //std::cout << A[2] << std::endl;
+    //return v1();
+}
+
+template <size_t N>
 inline Vector<N> operator*(const float s, Vector<N>& v) {
     auto tmp = _mm_set_ps(s,s,s,s);
     auto data = _mm_mul_ps(tmp, v());
