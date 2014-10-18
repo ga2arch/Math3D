@@ -7,16 +7,11 @@
 //
 
 #include <iostream>
-#include <xmmintrin.h>
-#include <x86intrin.h>
 #include <cmath>
 
-template <typename T>
-T operator*(const float s, T& d) {
-    auto tmp = _mm_set_ps(s,s,s,s);
-    auto data = _mm_mul_ps(tmp, d.data);
-    return T(data);
-}
+#include "Functions.h"
+
+
 
 // Curiously Recurring Template Pattern (CRTP)
 // http://kaba.hilvi.org/pastel/techniques_specialization.htm
@@ -24,8 +19,8 @@ T operator*(const float s, T& d) {
 template <std::size_t N, typename Derived>
 class BaseVector {
     
-    template <typename T> friend T operator*(const float s, T& d);
-    
+    template<typename T> friend T normalize(const T& d);
+
 public:
     explicit BaseVector(const __m128& v): data(v) {}
     
@@ -37,14 +32,14 @@ public:
         return Derived(_mm_add_ps(data, d()));
     }
     
-    Derived operator*(const float s) {
-        auto tmp = _mm_set_ps(s,s,s,s);
-        return Derived(_mm_mul_ps(data, tmp));
-    }
-    
     Derived& operator+=(const Derived& d) {
         data = _mm_add_ps(data, d());
         return static_cast<Derived&>(*this);
+    }
+    
+    Derived operator*(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        return Derived(_mm_mul_ps(data, tmp));
     }
     
     Derived& operator*=(const float s) {
@@ -53,7 +48,7 @@ public:
         return static_cast<Derived&>(*this);
     }
     
-    __m128 magnitude() {
+    __m128 magnitude() const {
         // (1,2,3,4) * (1,2,3,4)
         auto exp = _mm_mul_ps(data, data);
         
@@ -67,17 +62,13 @@ public:
         //_mm_store_ps(&A[0], result);
     }
     
-    __m128 squared_magnitude() {
+    __m128 squared_magnitude() const {
         auto exp = _mm_mul_ps(data, data);
         auto sum = _mm_hadd_ps(exp, exp);
         return _mm_hadd_ps(sum, sum);
     }
     
-    Derived normalized() {
-        auto m = magnitude();
-        auto r = _mm_rcp_ps(m);
-        return Derived(_mm_mul_ps(r, data));
-    }
+    
     
 protected:
     __m128 data;
@@ -148,4 +139,3 @@ typedef Vector<1> Vec1;
 typedef Vector<2> Vec2;
 typedef Vector<3> Vec3;
 typedef Vector<4> Vec4;
-

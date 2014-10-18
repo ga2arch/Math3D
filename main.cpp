@@ -39,12 +39,13 @@ int main(int argc, const char * argv[]) {
     
     auto t1 = high_resolution_clock::now();
     
-    auto m = v3.normalized();
+    auto m = normalize(v3);
     
     auto t2 = high_resolution_clock::now();
     
     auto duration = std::chrono::duration_cast<chrono::duration<double>>( t2 - t1 ).count();
     
+    cout << duration << endl;
     
 //    Vector v2(1.0f, 1.0f, 1.0f, 1.2f);
 //    
