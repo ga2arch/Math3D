@@ -7,9 +7,11 @@
 //
 
 #include <iostream>
+#include <chrono>
 #include "Vector.h"
 
 using namespace std;
+using namespace std::chrono;
 
 #define SHUFFLE_PARAM(x, y, z, w) ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6))
 
@@ -32,7 +34,20 @@ int main(int argc, const char * argv[]) {
     //Vec3 v3(1.0f, 2.0f, 3.0f);
 
     //auto v3 = v1 + v2;
-    auto v3 = 2.0f*v2;
+    auto v3 = v2;
+    
+    
+    auto t1 = high_resolution_clock::now();
+    
+    auto m = v3.mangitude();
+    
+    auto t2 = high_resolution_clock::now();
+    
+    auto duration = std::chrono::duration_cast<chrono::duration<double>>( t2 - t1 ).count();
+    
+    cout << m << endl;
+    cout << duration << endl;
+    
     
 //    Vector v2(1.0f, 1.0f, 1.0f, 1.2f);
 //    

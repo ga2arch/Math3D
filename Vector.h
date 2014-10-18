@@ -8,9 +8,8 @@
 
 #include <iostream>
 #include <xmmintrin.h>
-
-// Curiously Recurring Template Pattern (CRTP)
-// http://kaba.hilvi.org/pastel/techniques_specialization.htm
+#include <x86intrin.h>
+#include <cmath>
 
 template <typename T>
 T operator*(const float s, T& d) {
@@ -18,6 +17,9 @@ T operator*(const float s, T& d) {
     auto data = _mm_mul_ps(tmp, d.data);
     return T(data);
 }
+
+// Curiously Recurring Template Pattern (CRTP)
+// http://kaba.hilvi.org/pastel/techniques_specialization.htm
 
 template <std::size_t N, typename Derived>
 class BaseVector {
@@ -35,6 +37,11 @@ public:
         return Derived(_mm_add_ps(data, d()));
     }
     
+    Derived operator*(const float s) {
+        auto tmp = _mm_set_ps(s,s,s,s);
+        return Derived(_mm_mul_ps(data, tmp));
+    }
+    
     Derived& operator+=(const Derived& d) {
         data = _mm_add_ps(data, d());
         return static_cast<Derived&>(*this);
@@ -44,6 +51,20 @@ public:
         auto tmp = _mm_set_ps(s,s,s,s);
         data = _mm_mul_ps(tmp, data);
         return static_cast<Derived&>(*this);
+    }
+    
+    __m128 mangitude() {
+        // (1,2,3,4) * (1,2,3,4)
+        auto exp = _mm_mul_ps(data, data);
+        
+        // (1+2, 3+4, 1+2, 3+4) = (3, 7, 3, 7)
+        auto result = _mm_hadd_ps(exp, exp);
+        
+        // sqrt(3+7, 3+7, 3+7, 3+7) = sqrt(10, 10, 10, 10)
+        return _mm_sqrt_ps(_mm_hadd_ps(result, result));
+
+        //__declspec(align(16)) float A[4];
+        //_mm_store_ps(&A[0], result);
     }
     
 protected:
