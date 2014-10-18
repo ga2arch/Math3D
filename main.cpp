@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     
     auto t1 = high_resolution_clock::now();
     
-    auto m = v3.mangitude();
+    auto m = v3.normalized();
     
     auto t2 = high_resolution_clock::now();
     
@@ -52,7 +52,7 @@ int main(int argc, const char * argv[]) {
 //    
     __declspec(align(16)) float A[4];
 //    
-   _mm_store_ps(&A[0], v3());
+   _mm_store_ps(&A[0], m());
 //    
     printf("%g %g %g %g\n", A[3], A[2], A[1], A[0]);
 

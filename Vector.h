@@ -53,7 +53,7 @@ public:
         return static_cast<Derived&>(*this);
     }
     
-    __m128 mangitude() {
+    __m128 magnitude() {
         // (1,2,3,4) * (1,2,3,4)
         auto exp = _mm_mul_ps(data, data);
         
@@ -65,6 +65,18 @@ public:
 
         //__declspec(align(16)) float A[4];
         //_mm_store_ps(&A[0], result);
+    }
+    
+    __m128 squared_magnitude() {
+        auto exp = _mm_mul_ps(data, data);
+        auto sum = _mm_hadd_ps(exp, exp);
+        return _mm_hadd_ps(sum, sum);
+    }
+    
+    Derived normalized() {
+        auto m = magnitude();
+        auto r = _mm_rcp_ps(m);
+        return Derived(_mm_mul_ps(r, data));
     }
     
 protected:
