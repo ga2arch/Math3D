@@ -58,10 +58,10 @@ public:
         auto exp = _mm_mul_ps(data, data);
         
         // (1+2, 3+4, 1+2, 3+4) = (3, 7, 3, 7)
-        auto result = _mm_hadd_ps(exp, exp);
+        auto sum = _mm_hadd_ps(exp, exp);
         
         // sqrt(3+7, 3+7, 3+7, 3+7) = sqrt(10, 10, 10, 10)
-        return _mm_sqrt_ps(_mm_hadd_ps(result, result));
+        return _mm_sqrt_ps(_mm_hadd_ps(sum, sum));
 
         //__declspec(align(16)) float A[4];
         //_mm_store_ps(&A[0], result);

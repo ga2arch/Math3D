@@ -45,9 +45,6 @@ int main(int argc, const char * argv[]) {
     
     auto duration = std::chrono::duration_cast<chrono::duration<double>>( t2 - t1 ).count();
     
-    cout << m << endl;
-    cout << duration << endl;
-    
     
 //    Vector v2(1.0f, 1.0f, 1.0f, 1.2f);
 //    
