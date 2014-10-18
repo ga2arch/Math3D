@@ -12,8 +12,17 @@
 // Curiously Recurring Template Pattern (CRTP)
 // http://kaba.hilvi.org/pastel/techniques_specialization.htm
 
+template <typename T>
+T operator*(const float s, T& d) {
+    auto tmp = _mm_set_ps(s,s,s,s);
+    auto data = _mm_mul_ps(tmp, d.data);
+    return T(data);
+}
+
 template <std::size_t N, typename Derived>
 class BaseVector {
+    
+    template <typename T> friend T operator*(const float s, T& d);
     
 public:
     explicit BaseVector(const __m128& v): data(v) {}
@@ -31,6 +40,12 @@ public:
         return static_cast<Derived&>(*this);
     }
     
+    Derived& operator*=(const float s) {
+        auto tmp = _mm_set_ps(s,s,s,s);
+        data = _mm_mul_ps(tmp, data);
+        return static_cast<Derived&>(*this);
+    }
+    
 protected:
     __m128 data;
     
@@ -38,7 +53,7 @@ protected:
 
 template <std::size_t N>
 class Vector : public BaseVector<N, Vector<N>> {
-  
+
 private:
     typedef BaseVector<N, Vector<N>> Base;
     
@@ -56,6 +71,7 @@ private:
 public:
     explicit Vector<1>(const __m128& v): Base(v) {}
     explicit Vector<1>(float x);
+    
     
 };
 
@@ -99,3 +115,4 @@ typedef Vector<1> Vec1;
 typedef Vector<2> Vec2;
 typedef Vector<3> Vec3;
 typedef Vector<4> Vec4;
+

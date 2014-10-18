@@ -12,3 +12,4 @@ Vector<1>::Vector(float x)                           : Base(_mm_set_ps(x,x,x,x))
 Vector<2>::Vector(float x, float y)                  : Base(_mm_set_ps(x,y,0.0f,0.0f)) {}
 Vector<3>::Vector(float x, float y, float z)         : Base(_mm_set_ps(x,y,z,0.0f))    {}
 Vector<4>::Vector(float x, float y, float z, float w): Base(_mm_set_ps(x,y,z,w))       {}
+
