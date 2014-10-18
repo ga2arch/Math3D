@@ -48,6 +48,42 @@ public:
 };
 
 template <>
+class Vector<1> : public BaseVector<1, Vector<1>> {
+    
+private:
+    typedef BaseVector<1, Vector<1>> Base;
+    
+public:
+    explicit Vector<1>(const __m128& v): Base(v) {}
+    explicit Vector<1>(float x);
+    
+};
+
+template <>
+class Vector<2> : public BaseVector<2, Vector<2>> {
+    
+private:
+    typedef BaseVector<2, Vector<2>> Base;
+    
+public:
+    explicit Vector<2>(const __m128& v): Base(v) {}
+    explicit Vector<2>(float x, float y);
+    
+};
+
+template <>
+class Vector<3> : public BaseVector<3, Vector<3>> {
+    
+private:
+    typedef BaseVector<3, Vector<3>> Base;
+    
+public:
+    explicit Vector<3>(const __m128& v): Base(v) {}
+    explicit Vector<3>(float x, float y, float z);
+    
+};
+
+template <>
 class Vector<4> : public BaseVector<4, Vector<4>> {
     
 private:
@@ -59,4 +95,7 @@ public:
     
 };
 
+typedef Vector<1> Vec1;
+typedef Vector<2> Vec2;
+typedef Vector<3> Vec3;
 typedef Vector<4> Vec4;
