@@ -9,6 +9,9 @@
 #include <iostream>
 #include <xmmintrin.h>
 
+// Curiously Recurring Template Pattern (CRTP)
+// http://kaba.hilvi.org/pastel/techniques_specialization.htm
+
 template <std::size_t N, typename Derived>
 class BaseVector {
     
