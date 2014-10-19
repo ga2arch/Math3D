@@ -8,7 +8,22 @@
 
 #include "Vector.h"
 
-Vector<1>::Vector(float x)                           : Base(_mm_set1_ps(x))            {}
-Vector<2>::Vector(float x, float y)                  : Base(_mm_set_ps(x,y,0.0f,0.0f)) {}
-Vector<3>::Vector(float x, float y, float z)         : Base(_mm_set_ps(x,y,z,0.0f))    {}
-Vector<4>::Vector(float x, float y, float z, float w): Base(_mm_set_ps(x,y,z,w))       {}
+Vector<1>::Vector(float x) {
+    __declspec(align(16)) float t[] = {x};
+    data = _mm_load1_ps(t);
+}
+
+Vector<2>::Vector(float x, float y) {
+    __declspec(align(16)) float t[] = {x, y, 0.0f, 0.0f};
+    data = _mm_load_ps(t);
+ }
+
+Vector<3>::Vector(float x, float y, float z) {
+    __declspec(align(16)) float t[] = {x, y, z, 0.0f};
+    data = _mm_load_ps(t);
+}
+
+Vector<4>::Vector(float x, float y, float z, float w) {
+    __declspec(align(16)) float t[] = {x, y, z, w};
+    data = _mm_load_ps(t);
+}

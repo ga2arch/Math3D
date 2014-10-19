@@ -19,8 +19,7 @@ template <std::size_t N, typename Derived>
 class BaseVector {
     
 public:
-    explicit BaseVector(const __m128& v): data(v) {}
-    
+
     const __m128& operator()() const {
         return data;
     }
@@ -63,6 +62,8 @@ public:
     }
     
 protected:
+    BaseVector() {};
+    BaseVector(__m128 data): data(data) {};
     __m128 data;
     
 };
