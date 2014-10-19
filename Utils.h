@@ -11,8 +11,8 @@
 // to keep all the bits and setting the 31° to 0
 // effectively abs-ing the number
 
-#ifndef utils_h
-#define utils_h
+#ifndef utils_h_
+#define utils_h_
 
 __declspec(align(16)) static const int absmask[] = {
     0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff
@@ -28,6 +28,17 @@ __m128 debug(__m128 a, int pos) {
     return a;
 }
 
+template <typename ...T>
+struct are_same;
 
+template <typename A, typename B, typename ...T>
+struct are_same<A, B, T...> {
+    static const bool value = std::is_same<A, B>::value && are_same<B, T...>::value;
+};
+
+template <typename A>
+struct are_same<A> {
+    static const bool value = true;
+};
 
 #endif

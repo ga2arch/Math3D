@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <chrono>
+
 #include "Vector.h"
 #include "Matrix.h"
 #include "Functions.h"
@@ -42,7 +43,7 @@ int main(int argc, const char * argv[]) {
     
     //auto m = normalize(v3);
     auto b = dot(v1, v1);
-    //auto c = abs_cross(v1, v2);
+    auto c = abs_cross(v2, v2);
     
     Matrix<4,3> m1({v2,v2,v2,v2});
     

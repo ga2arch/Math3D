@@ -6,26 +6,13 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
-#ifndef matrix_h
-#define matrix_h
+#ifndef matrix_h_
+#define matrix_h_
 
 #include <iostream>
 #include "Vector.h"
 
 using namespace std;
-
-template <typename ...T>
-struct are_same;
-
-template <typename A, typename B, typename ...T>
-struct are_same<A, B, T...> {
-    static const bool value = std::is_same<A, B>::value && are_same<B, T...>::value;
-};
-
-template <typename A>
-struct are_same<A> {
-    static const bool value = true;
-};
 
 template <size_t R, size_t C>
 class Matrix {

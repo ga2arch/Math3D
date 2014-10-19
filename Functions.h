@@ -6,9 +6,15 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
-#ifndef functions_h
-#define functions_h
+#ifndef functions_h_
+#define functions_h_
 
+#include <cmath>
+#include <mmintrin.h>
+#include <xmmintrin.h>
+#include <x86intrin.h>
+
+#include "Vector.h"
 #include "Utils.h"
 
 template <size_t N>
