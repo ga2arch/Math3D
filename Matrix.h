@@ -23,7 +23,7 @@ private:
 public:
     template <typename... T,
     typename = typename enable_if<(sizeof...(T) == R
-                                   && sizeof...(T) < 5 && sizeof...(T) > 0
+                                   && R < 5 && R > 0
                                    && are_same<Vector<C>, T...>::value) >::type>
     Matrix(T... rows): data_{rows...}, data(data_) {};
 
