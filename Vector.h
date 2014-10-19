@@ -64,7 +64,7 @@ public:
 
     template <typename... T,
     typename = typename enable_if<(sizeof...(T) == N
-                                   && sizeof ...(T) <= 4
+                                   && sizeof ...(T) < 5 && sizeof...(T) > 0
                                    && are_same<float, T...>::value) >::type>
     Vector(T... cps): data(data_) {
         __declspec(align(16)) float t[] = {cps...};
