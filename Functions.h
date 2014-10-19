@@ -8,6 +8,17 @@
 
 #include "Vector.h"
 
+// Single precision float have sign bit at 31° bit
+// applying a mask of 0x7fffffff (31 bit is 0) allows to
+// abs the float which allows to keep all the bits and setting
+// the 31° to 0 effectively abs-ing the number
+
+__declspec(align(16)) static const int absmask[] = {
+    0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff
+};
+
+#define _mm_abs_ps(x) _mm_and_ps((x), *(const __m128*)absmask)
+
 template <size_t N>
 inline Vector<N> normalize(const Vector<N>& v) {
     auto m = v.magnitude();
@@ -35,12 +46,16 @@ inline __m128 cross(const Vector<N>& v1, const Vector<N>& v2) {
     auto mul2 = _mm_mul_ps(sh1, sh2);
     
     return _mm_sub_ps(mul1, mul2);
-    
     //__declspec(align(16)) float A[4];
     //_mm_store_ps(&A[0], sub);
     
-    //std::cout << A[2] << std::endl;
+    //std::cout << A[0] << std::endl;
     //return v1();
+}
+
+template <size_t N>
+inline __m128 abs_cross(const Vector<N>& v1, const Vector<N>& v2) {
+    return _mm_abs_ps(cross(v1, v2));
 }
 
 template <size_t N>

@@ -30,7 +30,7 @@ int main(int argc, const char * argv[]) {
     
     Vec3 v1(1.0f, 2.0f, 3.0f);
     
-    Vec3 v2(4.0f, 5.0f, 6.0f);
+    Vec3 v2(4.2f, 5.0f, 6.0f);
     //Vec3 v3(1.0f, 2.0f, 3.0f);
 
     //auto v3 = v1 + v2;

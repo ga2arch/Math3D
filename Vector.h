@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <mmintrin.h>
 #include <xmmintrin.h>
 #include <x86intrin.h>
 
