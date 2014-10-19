@@ -41,6 +41,7 @@ int main(int argc, const char * argv[]) {
     auto m = normalize(v3);
     auto b = dot(v1, v2);
     auto c = abs_cross(v1, v2);
+    2.0f*v1;
     
     auto t2 = high_resolution_clock::now();
     

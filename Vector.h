@@ -19,17 +19,12 @@ template <std::size_t N, typename Derived>
 class BaseVector {
     
 public:
-
-    const __m128& operator()() const {
-        return data;
-    }
-    
     Derived operator+(const Derived& d) const {
         return Derived(_mm_add_ps(data, d()));
     }
     
     Derived& operator+=(const Derived& d) {
-        data = _mm_add_ps(data, d());
+        data_ = _mm_add_ps(data, d());
         return static_cast<Derived&>(*this);
     }
     
@@ -40,7 +35,7 @@ public:
     
     Derived& operator*=(const float s) {
         auto tmp = _mm_set_ps(s,s,s,s);
-        data = _mm_mul_ps(tmp, data);
+        data_ = _mm_mul_ps(tmp, data);
         return static_cast<Derived&>(*this);
     }
     
@@ -61,11 +56,13 @@ public:
         return _mm_hadd_ps(sum, sum);
     }
     
+    const __m128& data;
+
 protected:
-    BaseVector() {};
-    BaseVector(__m128 data): data(data) {};
-    __m128 data;
-    
+    BaseVector(): data(data_) {};
+    BaseVector(__m128 v): data_(v), data(data_) {};
+    __m128 data_;
+
 };
 
 template <std::size_t N>
@@ -76,7 +73,7 @@ private:
     
 public:
     explicit Vector(const __m128& v): Base(v) {}
-    
+
 };
 
 template <>
