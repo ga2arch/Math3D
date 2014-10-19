@@ -14,6 +14,19 @@
 
 using namespace std;
 
+template <class ...T>
+struct are_same;
+
+template <class A, class B, class ...T>
+struct are_same<A, B, T...> {
+    static const bool value = std::is_same<A, B>::value && are_same<B, T...>::value;
+};
+
+template <class A>
+struct are_same<A> {
+    static const bool value = true;
+};
+
 template <size_t R, size_t C>
 class Matrix {
     
@@ -21,9 +34,10 @@ private:
     Vector<C> data_[R];
     
 public:
-    template <typename... T>
+    template <typename... T,
+    typename = typename enable_if<(sizeof...(T) == R && are_same<Vector<C>, T...>::value) >::type>
     Matrix(T... rows): data_{rows...}, data(data_) {};
- 
+
     const Vector<C>* data;
 };
 

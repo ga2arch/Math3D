@@ -76,8 +76,8 @@ private:
     typedef BaseVector<N, Vector<N>> Base;
     
 public:
-
     explicit Vector(const __m128& v): Base(v) {}
+    explicit Vector(): Base() {};
 
 };
 
@@ -108,7 +108,8 @@ private:
 public:
     explicit Vector<2>(const __m128& v): Base(v) {}
     explicit Vector<2>(float x, float y);
-    
+    explicit Vector<2>(): Base() {};
+
     Vector<2>& operator=(Vector<2> other) {
         data_ = other.data;
         return *this;
@@ -142,7 +143,8 @@ private:
 public:
     explicit Vector<4>(const __m128& v): Base(v) {}
     explicit Vector<4>(float x, float y, float z, float w);
-    
+    explicit Vector<4>(): Base() {};
+
     Vector<4>& operator=(Vector<4> other) {
         data_ = other.data;
         return *this;

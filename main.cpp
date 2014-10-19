@@ -30,21 +30,20 @@ int main(int argc, const char * argv[]) {
 //    
 //    printf("%g %g %g %g\n", A[0], A[1], A[2], A[3]);
     
-    Vec3 v1(1.0f, 2.0f, 3.0f);
+    Vec4 v1(1.0f, 2.0f, 3.0f, 3.0f);
     
     Vec3 v2(4.2f, 5.0f, 6.0f);
     //Vec3 v3(1.0f, 2.0f, 3.0f);
 
     //auto v3 = v1 + v2;
-    auto v3 = v2;
+    //auto v3 = v2;
 
     auto t1 = high_resolution_clock::now();
     
     //auto m = normalize(v3);
-    auto b = dot(v1, v2);
-    auto c = abs_cross(v1, v2);
+    auto b = dot(v1, v1);
+    //auto c = abs_cross(v1, v2);
     
-    Vec3 l[4] = {v2,v2,v2,v2};
     Matrix<4,3> m1({v2,v2,v2,v2});
     
     auto t2 = high_resolution_clock::now();
