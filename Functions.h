@@ -50,6 +50,10 @@ inline Vector<N> operator*(const float s, Vector<N>& v) {
     return Vector<N>(data);
 }
 
+template <size_t N>
+inline Vector<N> lerp(const Vector<N>& v1, const Vector<N>& v2, const float b) {
+    return (1-b)*v1 + b*v2;
+}
 
 
 
