@@ -40,13 +40,13 @@ public:
     }
     
     __m128 magnitude() const {
-        // (1,2,3,4) * (1,2,3,4)
+        // (1,2,3,4) * (1,2,3,4) = (1,4,9,16)
         auto exp = _mm_mul_ps(data, data);
         
-        // (1+2, 3+4, 1+2, 3+4) = (3, 7, 3, 7)
+        // (1+4, 9+16, 1+4, 9+16) = (5, 15, 5, 15)
         auto sum = _mm_hadd_ps(exp, exp);
         
-        // sqrt(3+7, 3+7, 3+7, 3+7) = sqrt(10, 10, 10, 10)
+        // sqrt(5+15, 5+15, 5+15, 5+15) = sqrt(20, 20, 20, 20)
         return _mm_sqrt_ps(_mm_hadd_ps(sum, sum));
     }
     
