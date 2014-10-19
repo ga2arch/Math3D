@@ -30,8 +30,8 @@ int main(int argc, const char * argv[]) {
 //    _mm_store_ps(&A[0], result);
 //    
 //    printf("%g %g %g %g\n", A[0], A[1], A[2], A[3]);
-    
-    Vec4 v1(1.0f, 2.0f, 3.0f, 3.0f);
+
+    Vector<4> v1(1.0f, 2.0f, 3.0f, 3.0f);
     
     Vec3 v2(4.2f, 5.0f, 6.0f);
     //Vec3 v3(1.0f, 2.0f, 3.0f);
