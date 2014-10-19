@@ -19,6 +19,14 @@ __declspec(align(16)) static const int absmask[] = {
 
 #define _mm_abs_ps(x) _mm_and_ps((x), *(const __m128*)absmask)
 
+__m128 debug(__m128 a, int pos) {
+    __declspec(align(16)) float A[4];
+    _mm_store_ps(&A[0], a);
+    
+    std::cout << A[pos] << std::endl;
+    return a;
+}
+
 template <size_t N>
 inline Vector<N> normalize(const Vector<N>& v) {
     auto m = v.magnitude();
@@ -46,17 +54,11 @@ inline __m128 cross(const Vector<N>& v1, const Vector<N>& v2) {
     auto mul2 = _mm_mul_ps(sh1, sh2);
     
     return _mm_sub_ps(mul1, mul2);
-    
 }
 
 template <size_t N>
 inline __m128 abs_cross(const Vector<N>& v1, const Vector<N>& v2) {
-    auto sub = _mm_abs_ps(cross(v1, v2));
-    __declspec(align(16)) float A[4];
-    _mm_store_ps(&A[0], sub);
-    
-    std::cout << A[0] << std::endl;
-    return v1();
+    return _mm_abs_ps(cross(v1, v2));
 }
 
 template <size_t N>
@@ -65,6 +67,9 @@ inline Vector<N> operator*(const float s, Vector<N>& v) {
     auto data = _mm_mul_ps(tmp, v());
     return Vector<N>(data);
 }
+
+
+
 
 
 
