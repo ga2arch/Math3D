@@ -11,6 +11,9 @@
 // to keep all the bits and setting the 31° to 0
 // effectively abs-ing the number
 
+#ifndef utils_h
+#define utils_h
+
 __declspec(align(16)) static const int absmask[] = {
     0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff
 };
@@ -24,3 +27,5 @@ __m128 debug(__m128 a, int pos) {
     std::cout << A[pos] << std::endl;
     return a;
 }
+
+#endif

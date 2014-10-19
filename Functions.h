@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
-#include "Vector.h"
+#ifndef functions_h
+#define functions_h
+
 #include "Utils.h"
 
 template <size_t N>
@@ -55,7 +57,7 @@ inline Vector<N> lerp(const Vector<N>& v1, const Vector<N>& v2, const float b) {
     return (1-b)*v1 + b*v2;
 }
 
-
+#endif
 
 
 

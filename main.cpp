@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <chrono>
+#include "Vector.h"
+#include "Matrix.h"
 #include "Functions.h"
 
 using namespace std;
@@ -38,10 +40,12 @@ int main(int argc, const char * argv[]) {
 
     auto t1 = high_resolution_clock::now();
     
-    auto m = normalize(v3);
+    //auto m = normalize(v3);
     auto b = dot(v1, v2);
     auto c = abs_cross(v1, v2);
-    2.0f*v1;
+    
+    Vec3 l[4] = {v2,v2,v2,v2};
+    Matrix<4,3> m1({v2,v2,v2,v2});
     
     auto t2 = high_resolution_clock::now();
     

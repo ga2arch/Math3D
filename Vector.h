@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
+#ifndef vector_h
+#define vector_h
+
 #include <iostream>
 #include <cmath>
 #include <mmintrin.h>
@@ -59,19 +62,21 @@ public:
     const __m128& data;
 
 protected:
-    BaseVector(): data(data_) {};
-    BaseVector(__m128 v): data_(v), data(data_) {};
+    explicit BaseVector(): data(data_) {};
+    explicit BaseVector(__m128 v): data_(v), data(data_) {};
+    
     __m128 data_;
 
 };
 
 template <std::size_t N>
 class Vector : public BaseVector<N, Vector<N>> {
-
+    
 private:
     typedef BaseVector<N, Vector<N>> Base;
     
 public:
+
     explicit Vector(const __m128& v): Base(v) {}
 
 };
@@ -85,7 +90,12 @@ private:
 public:
     explicit Vector<1>(const __m128& v): Base(v) {}
     explicit Vector<1>(float x);
+    explicit Vector<1>(): Base() {};
     
+    Vector<1>& operator=(Vector<1> other) {
+        data_ = other.data;
+        return *this;
+    }
     
 };
 
@@ -99,6 +109,10 @@ public:
     explicit Vector<2>(const __m128& v): Base(v) {}
     explicit Vector<2>(float x, float y);
     
+    Vector<2>& operator=(Vector<2> other) {
+        data_ = other.data;
+        return *this;
+    }
 };
 
 template <>
@@ -110,6 +124,12 @@ private:
 public:
     explicit Vector<3>(const __m128& v): Base(v) {}
     explicit Vector<3>(float x, float y, float z);
+    explicit Vector<3>(): Base() {};
+
+    Vector<3>& operator=(Vector<3> other) {
+        data_ = other.data;
+        return *this;
+    }
     
 };
 
@@ -123,9 +143,16 @@ public:
     explicit Vector<4>(const __m128& v): Base(v) {}
     explicit Vector<4>(float x, float y, float z, float w);
     
+    Vector<4>& operator=(Vector<4> other) {
+        data_ = other.data;
+        return *this;
+    }
+    
 };
 
 typedef Vector<1> Vec1;
 typedef Vector<2> Vec2;
 typedef Vector<3> Vec3;
 typedef Vector<4> Vec4;
+
+#endif
