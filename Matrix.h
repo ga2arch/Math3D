@@ -18,8 +18,7 @@ using namespace std;
 template <size_t R, size_t C>
 class Matrix {
     
-private:
-    
+
 public:
     template <typename... T,
     typename = typename enable_if<(sizeof...(T) == R
@@ -53,9 +52,10 @@ public:
         return Matrix<R,C1>(tmp, R);
     }
 
-    const Vector<C>* data;
+    const Vector<C> (&data)[R];
+    
+private:
     Vector<C> data_[R];
-
 };
 
 #endif

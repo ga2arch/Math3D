@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
     
     cout << duration << endl;
     
-    for (auto& e: result.data_)
+    for (auto& e: result.data)
         debug(e.data);
     
 }
