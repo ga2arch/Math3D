@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "Vector.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -32,6 +33,17 @@ public:
             e *= s;
         }
         return *this;
+    }
+    
+    template <size_t R1, size_t C1>
+    Matrix<R,C> operator*(const Matrix<R1,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i<R; i++) {
+            tmp[i] = data[i]*m;
+        }
+        
+        return Matrix(tmp[0], tmp[1], tmp[2], tmp[3]);
     }
 
     const Vector<C>* data;

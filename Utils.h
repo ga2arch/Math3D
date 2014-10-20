@@ -20,7 +20,7 @@ __declspec(align(16)) static const int absmask[] = {
 
 #define _mm_abs_ps(x) _mm_and_ps((x), *(const __m128*)absmask)
 
-__m128 debug(__m128 a, int pos) {
+__m128 debug(__m128 a) {
     __declspec(align(16)) float A[4];
     _mm_store_ps(&A[0], a);
     
