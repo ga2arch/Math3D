@@ -27,11 +27,10 @@ int main(int argc, const char * argv[]) {
     //auto c = abs_cross(v2, v2);
     
     Vec3 v1(4.0f, 1.0f, 1.0f);
+    Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
     
-    debug(v1.data);
-    
-    auto result = v1*m1;
+    auto result = m0*m1;
     
     auto t2 = high_resolution_clock::now();
     
@@ -39,7 +38,8 @@ int main(int argc, const char * argv[]) {
     
     cout << duration << endl;
     
-    debug(result.data);
+    for (auto& e: result.data_)
+        debug(e.data);
     
 }
 

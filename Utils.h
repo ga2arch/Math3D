@@ -40,6 +40,8 @@ __m128 debug(__m128 a) {
 #define _mm_replicate_w_ps(v) \
     _mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,0))
 
+#define splice(a) a[0]
+
 template <typename ...T>
 struct are_same;
 

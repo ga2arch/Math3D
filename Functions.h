@@ -80,8 +80,6 @@ inline Vector<C> operator*(const Vector<T>& v, const Matrix<R,C>& m) {
     result = _mm_add_ps(result, m_row3);
     result = _mm_add_ps(result, m_row4);
     
-    debug(wwww);
-    
     return Vector<C>(result);
 }
 
