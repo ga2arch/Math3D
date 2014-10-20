@@ -15,6 +15,7 @@
 #include <x86intrin.h>
 
 #include "Vector.h"
+#include "Matrix.h"
 #include "Utils.h"
 
 template <size_t N>
@@ -62,6 +63,26 @@ template <size_t N>
 inline Vector<N> lerp(const Vector<N>& v1, const Vector<N>& v2, const float b) {
     return (1-b)*v1 + b*v2;
 }
+
+template <size_t T, size_t R, size_t C>
+inline Matrix<R,C>& operator*(const Vector<T>& v, const Matrix<R,C>& m) {
+    const __m128 xxxx = _mm_replicate_x_ps(v.data);
+    const __m128 yyyy = _mm_replicate_y_ps(v.data);
+    const __m128 zzzz = _mm_replicate_z_ps(v.data);
+    const __m128 wwww = _mm_replicate_w_ps(v.data);
+    
+    const __m128 m_row1 = _mm_mul_ps(xxxx, m.data[0]);
+    const __m128 m_row2 = _mm_mul_ps(yyyy, m.data[1]);
+    const __m128 m_row3 = _mm_mul_ps(zzzz, m.data[2]);
+    const __m128 m_row4 = _mm_mul_ps(wwww, m.data[3]);
+    
+    auto result = _mm_add_ps(m_row1, m_row2);
+    result = _mm_add_ps(result, m_row3);
+    result = _mm_add_ps(result, m_row4);
+    
+    return Matrix<1,C>{Vector<C>(result)};
+}
+
 
 #endif
 
