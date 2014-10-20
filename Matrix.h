@@ -28,8 +28,9 @@ public:
     Matrix(T... rows): data_{rows...}, data(data_) {};
     
     Matrix<R,C>& operator*=(const float s) {
-        auto v = Vec1(s);
-        
+        for (auto& e: data_) {
+            e *= s;
+        }
     }
 
     const Vector<C>* data;
