@@ -103,6 +103,8 @@ public:
 
     };
     
+    Vector(__m128 d): data_(d), data(data_) {};
+    
 protected:
     __m128 data_;
 

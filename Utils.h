@@ -28,6 +28,18 @@ __m128 debug(__m128 a, int pos) {
     return a;
 }
 
+#define _mm_replicate_x_ps(v) \
+    _mm_shuffle_ps(v, v, _MM_SHUFFLE(3,3,3,3))
+
+#define _mm_replicate_y_ps(v) \
+    _mm_shuffle_ps(v, v, _MM_SHUFFLE(2,2,2,2))
+
+#define _mm_replicate_z_ps(v) \
+    _mm_shuffle_ps(v, v, _MM_SHUFFLE(1,1,1,1))
+
+#define _mm_replicate_w_ps(v) \
+    _mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,0))
+
 template <typename ...T>
 struct are_same;
 
