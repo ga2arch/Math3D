@@ -37,9 +37,9 @@ public:
     template <size_t T>
     Matrix<R,C>& operator*=(const Vector<T>& v) {
         const __m128 xxxx = _mm_replicate_x_ps(v.data);
-        const __m128 yyyy = _mm_replicate_x_ps(v.data);
-        const __m128 zzzz = _mm_replicate_x_ps(v.data);
-        const __m128 wwww = _mm_replicate_x_ps(v.data);
+        const __m128 yyyy = _mm_replicate_y_ps(v.data);
+        const __m128 zzzz = _mm_replicate_z_ps(v.data);
+        const __m128 wwww = _mm_replicate_w_ps(v.data);
         
         const __m128 m_row1 = _mm_mul_ps(xxxx, data[0]);
         const __m128 m_row2 = _mm_mul_ps(yyyy, data[1]);
