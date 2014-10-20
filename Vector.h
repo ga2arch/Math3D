@@ -67,8 +67,40 @@ public:
                                    && N < 5 && N > 0
                                    && are_same<float, T...>::value) >::type>
     Vector(T... cps): data(data_) {
-        __declspec(align(16)) float t[] = {cps...};
+        __declspec(align(16)) float t[4];
+        float tmp[] = {cps...};
+        
+        switch(N) {
+            case 1:
+                t[0] = tmp[0];
+                t[1] = tmp[0];
+                t[2] = tmp[0];
+                t[3] = tmp[0];
+                break;
+
+            case 2:
+                t[0] = tmp[0];
+                t[1] = tmp[1];
+                t[2] = 0.0f;
+                t[3] = 0.0f;
+                break;
+            
+            case 3:
+                t[0] = tmp[0];
+                t[1] = tmp[1];
+                t[2] = tmp[2];
+                t[3] = 0.0f;
+                break;
+                
+            case 4:
+                t[0] = tmp[0];
+                t[1] = tmp[1];
+                t[2] = tmp[2];
+                t[3] = tmp[3];
+                break;
+        }
         data_ = _mm_load1_ps(t);
+
     };
     
 protected:

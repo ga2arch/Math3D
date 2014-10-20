@@ -24,7 +24,7 @@ __m128 debug(__m128 a, int pos) {
     __declspec(align(16)) float A[4];
     _mm_store_ps(&A[0], a);
     
-    std::cout << A[pos] << std::endl;
+    printf("%g %g %g %g\n", A[3], A[2], A[1], A[0]);
     return a;
 }
 

@@ -26,6 +26,11 @@ public:
                                    && R < 5 && R > 0
                                    && are_same<Vector<C>, T...>::value) >::type>
     Matrix(T... rows): data_{rows...}, data(data_) {};
+    
+    Matrix<R,C>& operator*=(const float s) {
+        auto v = Vec1(s);
+        
+    }
 
     const Vector<C>* data;
 };
