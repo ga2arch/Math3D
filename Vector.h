@@ -23,6 +23,51 @@ template <std::size_t N>
 class Vector {
     
 public:
+    
+    template <typename... T,
+    typename = typename enable_if<(sizeof...(T) == N
+                                   && N < 5 && N > 0
+                                   && are_same<float, T...>::value) >::type>
+    Vector(T... cps): data(data_) {
+        __declspec(align(16)) float t[4];
+        float tmp[] = {cps...};
+        
+        switch(N) {
+            case 1:
+                t[0] = tmp[0];
+                t[1] = tmp[0];
+                t[2] = tmp[0];
+                t[3] = tmp[0];
+                break;
+                
+            case 2:
+                t[0] = tmp[0];
+                t[1] = tmp[1];
+                t[2] = 0.0f;
+                t[3] = 0.0f;
+                break;
+                
+            case 3:
+                t[0] = tmp[0];
+                t[1] = tmp[1];
+                t[2] = tmp[2];
+                t[3] = 0.0f;
+                break;
+                
+            case 4:
+                t[0] = tmp[0];
+                t[1] = tmp[1];
+                t[2] = tmp[2];
+                t[3] = tmp[3];
+                break;
+        }
+        data_ = _mm_load1_ps(t);
+        
+    };
+
+    Vector(__m128 d): data_(d), data(data_) {};
+
+    
     Vector operator+(const Vector& d) const {
         return Vector(_mm_add_ps(data, d()));
     }
@@ -61,49 +106,6 @@ public:
     }
     
     const __m128& data;
-
-    template <typename... T,
-    typename = typename enable_if<(sizeof...(T) == N
-                                   && N < 5 && N > 0
-                                   && are_same<float, T...>::value) >::type>
-    Vector(T... cps): data(data_) {
-        __declspec(align(16)) float t[4];
-        float tmp[] = {cps...};
-        
-        switch(N) {
-            case 1:
-                t[0] = tmp[0];
-                t[1] = tmp[0];
-                t[2] = tmp[0];
-                t[3] = tmp[0];
-                break;
-
-            case 2:
-                t[0] = tmp[0];
-                t[1] = tmp[1];
-                t[2] = 0.0f;
-                t[3] = 0.0f;
-                break;
-            
-            case 3:
-                t[0] = tmp[0];
-                t[1] = tmp[1];
-                t[2] = tmp[2];
-                t[3] = 0.0f;
-                break;
-                
-            case 4:
-                t[0] = tmp[0];
-                t[1] = tmp[1];
-                t[2] = tmp[2];
-                t[3] = tmp[3];
-                break;
-        }
-        data_ = _mm_load1_ps(t);
-
-    };
-    
-    Vector(__m128 d): data_(d), data(data_) {};
     
 protected:
     __m128 data_;

@@ -33,8 +33,6 @@ public:
         }
         return *this;
     }
-    
-    
 
     const Vector<C>* data;
 };
