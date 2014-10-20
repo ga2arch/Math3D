@@ -26,9 +26,9 @@ public:
                                    && are_same<Vector<C>, T...>::value) >::type>
     Matrix(T... rows): data_{rows...}, data(data_) {};
     
-    Matrix(Vector<C>* vs, int n): data(data_) {
-        for (int i=0; i<n; i++) {
-            data_[i] = *(vs+i);
+    Matrix(Vector<C> (&vs)[R]): data(data_) {
+        for (int i=0; i<R; i++) {
+            data_[i] = vs[i];
         }
     };
     
@@ -49,7 +49,7 @@ public:
             tmp[i] = data[i]*m;
         }
         
-        return Matrix<R,C1>(tmp, R);
+        return Matrix<R,C1>(tmp);
     }
 
     const Vector<C> (&data)[R];
