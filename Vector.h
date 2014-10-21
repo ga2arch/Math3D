@@ -58,7 +58,7 @@ public:
     }
     
     Vector& operator+=(const Vector& d) {
-        data_ = _mm_add_ps(data, d());
+        data_ = _mm_add_ps(data, d.data);
         return *this;
     }
     

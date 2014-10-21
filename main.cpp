@@ -13,6 +13,8 @@
 #include "Matrix.h"
 #include "Functions.h"
 #include "Utils.h"
+#include "Quaternion.h"
+#include "SSEMathFun.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -29,7 +31,7 @@ int main(int argc, const char * argv[]) {
     Matrix<3,3> m1{v1,v1,v1};
     auto id = Matrix<4,4>::identity();
     
-    auto result = m0*m1;
+    //auto result = m0*m1;
     
     
     auto t2 = high_resolution_clock::now();
