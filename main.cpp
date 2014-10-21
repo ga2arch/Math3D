@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
     Vec3 v1(4.0f, 1.0f, 1.0f);
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
-    auto id = Matrix<3,4>::identity();
+    auto id = Matrix<4,4>::identity();
     
     auto result = m0*m1;
     
