@@ -51,7 +51,34 @@ public:
         
         return Matrix<R,C1>(tmp);
     }
-
+    
+    template <size_t R1, size_t C1,
+    typename = typename enable_if<C == R1>::type>
+    
+    Matrix<R,C>& operator*=(const Matrix<R1,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (auto& e: data) {
+            e *= m;
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+    
+    template <size_t R1 = R, size_t C1 = C,
+    typename = typename enable_if<R1 == C1>::type>
+    
+    static Matrix<R,R> identity() {
+        Vector<R> tmp[R];
+        for (int i=0; i<R; i++) {
+            __declspec(align(16)) float t[4] = {0.0f,0.0f,0.0f,0.0f};
+            t[i] = 1.0f;
+            tmp[i] = Vector<R>(t);
+        }
+        
+        return Matrix<R,R>(tmp);
+    }
+    
     const Vector<C> (&data)[R];
     
 private:

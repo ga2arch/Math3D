@@ -17,8 +17,6 @@
 using namespace std;
 using namespace std::chrono;
 
-#define SHUFFLE_PARAM(x, y, z, w) ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6))
-
 int main(int argc, const char * argv[]) {
     auto t1 = high_resolution_clock::now();
     
@@ -29,16 +27,18 @@ int main(int argc, const char * argv[]) {
     Vec3 v1(4.0f, 1.0f, 1.0f);
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
+    auto id = Matrix<3,4>::identity();
     
     auto result = m0*m1;
     
+    
     auto t2 = high_resolution_clock::now();
     
-    auto duration = std::chrono::duration_cast<chrono::duration<double>>( t2 - t1 ).count();
+    auto duration = duration_cast<chrono::duration<double>>( t2 - t1 ).count();
     
     cout << duration << endl;
     
-    for (auto& e: result.data)
+    for (auto& e: id.data)
         debug(e.data);
     
 }

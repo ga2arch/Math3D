@@ -14,19 +14,13 @@
 #ifndef utils_h_
 #define utils_h_
 
+// Macros
+
 __declspec(align(16)) static const int absmask[] = {
     0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff
 };
 
 #define _mm_abs_ps(x) _mm_and_ps((x), *(const __m128*)absmask)
-
-__m128 debug(__m128 a) {
-    __declspec(align(16)) float A[4];
-    _mm_store_ps(&A[0], a);
-    
-    printf("%g %g %g %g\n", A[3], A[2], A[1], A[0]);
-    return a;
-}
 
 #define _mm_replicate_x_ps(v) \
     _mm_shuffle_ps(v, v, _MM_SHUFFLE(3,3,3,3))
@@ -40,7 +34,17 @@ __m128 debug(__m128 a) {
 #define _mm_replicate_w_ps(v) \
     _mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,0))
 
-#define splice(a) a[0]
+// Function utilities
+
+__m128 debug(__m128 a) {
+    __declspec(align(16)) float A[4];
+    _mm_store_ps(&A[0], a);
+    
+    printf("%g %g %g %g\n", A[3], A[2], A[1], A[0]);
+    return a;
+}
+
+// Template utilities
 
 template <typename ...T>
 struct are_same;

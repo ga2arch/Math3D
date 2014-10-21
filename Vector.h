@@ -38,11 +38,15 @@ public:
         reverse(begin(t), end(t));
         data_ = _mm_load_ps(t);
     };
+    
+    Vector(float (&vs)[4]) : data(data_) {
+        reverse(begin(vs), end(vs));
+        data_ = _mm_load_ps(vs);
+    }
 
     Vector(): data(data_) {};
     Vector(Vector<N> const &v): data_(v.data), data(data_) {};
     Vector(__m128 d): data_(d), data(data_) {};
-
 
     Vector& operator=(const Vector<N>& v) {
         data_ = v.data;
@@ -64,7 +68,7 @@ public:
     }
     
     Vector& operator*=(const float s) {
-        auto tmp = _mm_set_ps(s,s,s,s);
+        auto tmp = _mm_set_ps1(s);
         data_ = _mm_mul_ps(tmp, data);
         return *this;
     }
