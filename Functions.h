@@ -13,6 +13,7 @@
 #include <mmintrin.h>
 #include <xmmintrin.h>
 #include <x86intrin.h>
+#include <emmintrin.h>
 
 #include "Vector.h"
 #include "Matrix.h"

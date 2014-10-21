@@ -15,7 +15,7 @@
 
 #include "Functions.h"
 #include "Vector.h"
-#include "SSEMathFun.h"
+#include "SSEFun.h"
 
 class Quaternion {
     

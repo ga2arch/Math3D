@@ -14,7 +14,7 @@
 #include "Functions.h"
 #include "Utils.h"
 #include "Quaternion.h"
-#include "SSEMathFun.h"
+#include "SSEFun.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -32,8 +32,7 @@ int main(int argc, const char * argv[]) {
     
     auto q  = Quaternion(v1, 10.0f);
     auto q1 = Quaternion(v1, 10.0f);
-    auto c = cross(v1, v1);
-
+    //auto c = cross(v1, v1);
     
     auto t2 = high_resolution_clock::now();
     auto result = q*q1;

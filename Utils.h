@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
-// Single precision float have sign bit at 31° bit
-// applying a mask of 0x7fffffff (31° bit is 0) allows
-// to keep all the bits and setting the 31° to 0
-// effectively abs-ing the number
-
 #ifndef utils_h_
 #define utils_h_
 
 // Macros
+
+// Single precision float have sign bit at 31° bit
+// applying a mask of 0x7fffffff (31° bit is 0) allows
+// to keep all the bits and setting the 31° to 0
+// effectively abs-ing the number
 
 __declspec(align(16)) static const int absmask[] = {
     0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff
