@@ -24,7 +24,6 @@ int main(int argc, const char * argv[]) {
     
     //auto m = normalize(v3);
     //auto b = dot(v1, v1);
-    //auto c = abs_cross(v2, v2);
     
     Vec3 v1(4.0f, 1.0f, 1.0f);
     Matrix<2,3> m0{v1,v1};
@@ -33,6 +32,7 @@ int main(int argc, const char * argv[]) {
     
     auto q  = Quaternion(v1, 10.0f);
     auto q1 = Quaternion(v1, 10.0f);
+    auto c = cross(v1, v1);
 
     
     auto t2 = high_resolution_clock::now();
@@ -43,7 +43,7 @@ int main(int argc, const char * argv[]) {
     cout << duration << endl;
     
     //for (auto& e: q.data.data)
-        debug(result.data.data);
+        debug(result.data);
     
 }
 
