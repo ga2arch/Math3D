@@ -39,27 +39,6 @@ public:
         data_ = _mm_add_ps(v.data, ___a);
     }
 
-    Quaternion& operator*=(const Quaternion& q) {
-        const auto ps = _mm_replicate_w_ps(data);
-        const auto qs = _mm_replicate_w_ps(q.data);
-        
-        const auto s1 = _mm_mul_ps(ps, q.data);
-        const auto s2 = _mm_mul_ps(qs, data);
-        
-        const auto pvXqv = cross(data, q.data);
-        
-        const auto psqs = _mm_mul_ps(ps, qs);
-        const auto pvqv = dot(data, q.data);
-        
-        auto r = _mm_add_ps(s1, s2);
-        r = _mm_reset_ps(_mm_add_ps(r, pvXqv), 0);
-        
-        auto a = _mm_sub_ps(psqs, pvqv);
-        const auto ___a = _mm_keep_ps(a, 0);
-        data_ = _mm_add_ps(r, ___a);
-        return *this;
-    };
-    
     const __m128& data;
     
 private:
