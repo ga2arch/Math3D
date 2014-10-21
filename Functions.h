@@ -64,8 +64,8 @@ inline Vector<N> lerp(const Vector<N>& v1, const Vector<N>& v2, const float b) {
     return (1-b)*v1 + b*v2;
 }
 
-template <size_t T, size_t R, size_t C>
-inline Vector<C> operator*(const Vector<T>& v, const Matrix<R,C>& m) {
+template <size_t R, size_t C>
+inline Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
     const __m128 xxxx = _mm_replicate_x_ps(v.data);
     const __m128 yyyy = _mm_replicate_y_ps(v.data);
     const __m128 zzzz = _mm_replicate_z_ps(v.data);
