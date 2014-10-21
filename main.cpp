@@ -26,13 +26,17 @@ int main(int argc, const char * argv[]) {
     //auto b = dot(v1, v1);
     
     Vec3 v1(4.0f, 1.0f, 1.0f);
+    Vec3 v2(4.0f, 8.0f, 1.0f);
+
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
     //auto id = Matrix<4,4>::identity();
     
     auto q  = Quaternion(v1, 10.0f);
     auto q1 = Quaternion(v1, 10.0f);
-    //auto c = cross(v1, v1);
+    auto c = dot(v1, v2);
+    
+    debug(c);
     
     auto t2 = high_resolution_clock::now();
     auto result = q*q1;

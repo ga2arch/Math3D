@@ -18,9 +18,10 @@
 
 // Generic
 __m128 dot(const __m128& p, const __m128& q) {
-    const auto m = _mm_mul_ps(p, q);
-    const auto sum = _mm_hadd_ps(m, m);
-    return _mm_hadd_ps(sum, sum);
+//    const auto m = _mm_mul_ps(p, q);
+//    const auto sum = _mm_hadd_ps(m, m);
+//    return _mm_hadd_ps(sum, sum);
+    return _mm_dp_ps(p, q, 0x0FF);
 }
 
 __m128 cross(const __m128& p, const __m128& q) {
