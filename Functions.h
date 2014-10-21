@@ -124,6 +124,14 @@ Quaternion conjugate(const Quaternion& q) {
     return Quaternion(r);
 }
 
+// The inverse is equal to the conjugate because
+// |q| is always 1 because they rappresent
+// 3D rotations
+
+Quaternion inverse(const Quaternion& q) {
+    return conjugate(q);
+}
+
 #endif
 
 
