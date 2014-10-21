@@ -21,6 +21,12 @@ __m128 dot(const __m128& p, const __m128& q) {
 //    const auto m = _mm_mul_ps(p, q);
 //    const auto sum = _mm_hadd_ps(m, m);
 //    return _mm_hadd_ps(sum, sum);
+    
+    // mask = 4-byte   4-byte
+    //        x y z w  x y z w
+    //        origin   destination
+    //        1 = mul  0 = set 0
+    // 0xFF = 1 1 1 1  1 1 1 1
     return _mm_dp_ps(p, q, 0x0FF);
 }
 
