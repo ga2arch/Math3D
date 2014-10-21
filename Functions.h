@@ -20,22 +20,11 @@
 #include "Quaternion.h"
 #include "Utils.h"
 
-template <size_t N>
-Vector<N> normalize(const Vector<N>& v) {
-    const auto m = v.magnitude();
-    const auto r = _mm_rcp_ps(m);
-    return Vector<N>(_mm_mul_ps(r, v.data));
-}
-
+// Generic
 __m128 dot(const __m128& p, const __m128& q) {
     const auto m = _mm_mul_ps(p, q);
     const auto sum = _mm_hadd_ps(m, m);
     return _mm_hadd_ps(sum, sum);
-}
-
-template <size_t N>
-__m128 dot(const Vector<N>& v1, const Vector<N>& v2) {
-    return dot(v1.data, v2.data);
 }
 
 __m128 cross(const __m128& p, const __m128& q) {
@@ -51,6 +40,21 @@ __m128 cross(const __m128& p, const __m128& q) {
     
     return _mm_sub_ps(mul1, mul2);
 }
+
+// Vectors
+
+template <size_t N>
+Vector<N> normalize(const Vector<N>& v) {
+    const auto m = v.magnitude();
+    const auto r = _mm_rcp_ps(m);
+    return Vector<N>(_mm_mul_ps(r, v.data));
+}
+
+template <size_t N>
+__m128 dot(const Vector<N>& v1, const Vector<N>& v2) {
+    return dot(v1.data, v2.data);
+}
+
 
 template <size_t N>
 __m128 cross(const Vector<N>& v1, const Vector<N>& v2) {
@@ -76,6 +80,7 @@ inline Vector<N> lerp(const Vector<N>& v1,
     return (1-b)*v1 + b*v2;
 }
 
+
 template <size_t R, size_t C>
 Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
     const auto xxxx = _mm_replicate_x_ps(v.data);
@@ -94,6 +99,8 @@ Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
     
     return Vector<C>(result);
 }
+
+// Quaternions
 
 Quaternion operator*(const Quaternion& p, const Quaternion& q) {
     const auto ps = _mm_replicate_w_ps(p.data);
@@ -130,6 +137,18 @@ Quaternion conjugate(const Quaternion& q) {
 
 Quaternion inverse(const Quaternion& q) {
     return conjugate(q);
+}
+
+template <size_t N>
+Vector<N> rotate(const Quaternion& q, const Vector<N>& v) {
+    auto vd  = v.data;
+    auto qd  = q.data;
+    auto qid = inverse(q).data;
+    
+    auto r = _mm_mul_ps(qd, vd);
+    r = _mm_mul_ps(r, qid);
+    
+    return Vector<N>(r);
 }
 
 #endif
