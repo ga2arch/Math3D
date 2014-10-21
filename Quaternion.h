@@ -20,21 +20,46 @@ class Quaternion {
 public:
     Quaternion(): data(data_) {};
     Quaternion(Vec3 v, float angle): data(data_) {
-        __declspec(align(16)) float t[4] = {0.0f,0.0f,0.0f,angle/2.0f};
+        __declspec(align(16)) float t[4] = {angle/2.0f};
         auto ___a = _mm_load_ps(t);
         
         auto aaaa = _mm_shuffle_ps(___a, ___a, _MM_SHUFFLE(0,0,0,0));
         aaaa = sin_ps(aaaa);
-        ___a = cos_ps(___a);
+        
+        ___a = _mm_keep_ps(cos_ps(___a), 0);
         
         const auto r = _mm_mul_ps(v.data, aaaa);
-        data_ = _mm_add_ps(r, ___a);
+        data_ = Vec4(_mm_add_ps(r, ___a));
     };
     
-    const __m128& data;
+    Quaternion(Vec3 v, __m128 angle): data(data_) {
+        const auto ___a = _mm_keep_ps(v.data, 0);
+        data_ = Vec4(_mm_add_ps(v.data, ___a));
+    }
+
+    Quaternion operator*(const Quaternion& q) {
+        const auto ps = _mm_replicate_w_ps(data.data);
+        const auto qs = _mm_replicate_w_ps(q.data.data);
+        
+        const auto s1 = _mm_mul_ps(ps, q.data.data);
+        const auto s2 = _mm_mul_ps(qs, data.data);
+        
+        const auto pvXqv = cross(data, q.data);
+
+        const auto psqs = _mm_mul_ps(ps, qs);
+        const auto pvqv = dot(data, q.data);
+        
+        auto r = _mm_add_ps(s1, s2);
+        r = _mm_add_ps(r, pvXqv);
+        
+        auto a = _mm_sub_ps(psqs, pvqv);
+        return Quaternion(Vec3(r), a);
+    };
+    
+    const Vec4& data;
     
 private:
-    __m128 data_;
+    Vec4 data_;
     
 };
 

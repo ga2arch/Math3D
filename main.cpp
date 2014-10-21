@@ -29,19 +29,21 @@ int main(int argc, const char * argv[]) {
     Vec3 v1(4.0f, 1.0f, 1.0f);
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
-    auto id = Matrix<4,4>::identity();
+    //auto id = Matrix<4,4>::identity();
     
-    //auto result = m0*m1;
-    
+    auto q  = Quaternion(v1, 10.0f);
+    auto q1 = Quaternion(v1, 10.0f);
+
     
     auto t2 = high_resolution_clock::now();
-    
+    auto result = q*q1;
+
     auto duration = duration_cast<chrono::duration<double>>( t2 - t1 ).count();
     
     cout << duration << endl;
     
-    for (auto& e: id.data)
-        debug(e.data);
+    //for (auto& e: q.data.data)
+        debug(result.data.data);
     
 }
 

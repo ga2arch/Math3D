@@ -65,7 +65,7 @@ inline Vector<N> lerp(const Vector<N>& v1, const Vector<N>& v2, const float b) {
 }
 
 template <size_t R, size_t C>
-inline Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
+Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
     const auto xxxx = _mm_replicate_x_ps(v.data);
     const auto yyyy = _mm_replicate_y_ps(v.data);
     const auto zzzz = _mm_replicate_z_ps(v.data);
