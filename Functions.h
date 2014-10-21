@@ -140,13 +140,33 @@ Quaternion inverse(const Quaternion& q) {
 }
 
 template <size_t N>
-Vector<N> rotate(const Quaternion& q, const Vector<N>& v) {
+Vector<N> rotate(const Vector<N>& v, const Quaternion& q) {
     auto vd  = v.data;
     auto qd  = q.data;
     auto qid = inverse(q).data;
     
     auto r = _mm_mul_ps(qd, vd);
     r = _mm_mul_ps(r, qid);
+    
+    return Vector<N>(r);
+}
+
+template <size_t N, typename... T>
+Vector<N> rotate(const Vector<N>& v, T... tqs) {
+    Quaternion qs[]{tqs...};
+    auto q  = qs[sizeof...(T)-1];
+    auto iq = qs[0];
+    
+    for (int i=sizeof...(T)-2; i!=0; i--) {
+        q = q * qs[i];
+    }
+    
+    for (int i=1; i<sizeof...(T)-2; i++) {
+        iq = iq * qs[i];
+    }
+    
+    auto r = _mm_mul_ps(q.data, v.data);
+    r = _mm_mul_ps(r, iq.data);
     
     return Vector<N>(r);
 }
