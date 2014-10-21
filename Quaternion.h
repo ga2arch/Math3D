@@ -25,7 +25,7 @@ public:
         __declspec(align(16)) float t[4] = {angle/2.0f};
         auto ___a = _mm_load_ps(t);
         
-        auto aaaa = _mm_shuffle_ps(___a, ___a, _MM_SHUFFLE(0,0,0,0));
+        auto aaaa = _mm_replicate_w_ps(___a);
         aaaa = sin_ps(aaaa);
         
         ___a = _mm_keep_w_ps(cos_ps(___a));
