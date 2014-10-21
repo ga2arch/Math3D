@@ -28,14 +28,14 @@ public:
         auto aaaa = _mm_shuffle_ps(___a, ___a, _MM_SHUFFLE(0,0,0,0));
         aaaa = sin_ps(aaaa);
         
-        ___a = _mm_keep_ps(cos_ps(___a), 0);
+        ___a = _mm_keep_w_ps(cos_ps(___a));
         
         const auto r = _mm_mul_ps(v.data, aaaa);
         data_ = _mm_add_ps(r, ___a);
     };
     
     Quaternion(Vec3 v, __m128 angle): data(data_) {
-        const auto ___a = _mm_keep_ps(v.data, 0);
+        const auto ___a = _mm_keep_w_ps(v.data);
         data_ = _mm_add_ps(v.data, ___a);
     }
 

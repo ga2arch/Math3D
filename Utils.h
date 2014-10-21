@@ -34,6 +34,15 @@ __declspec(align(16)) static const int absmask[] = {
 #define _mm_replicate_w_ps(v) \
     _mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,0))
 
+#define _mm_reset_x_ps(v) _mm_reset_ps(v, 3);
+#define _mm_reset_y_ps(v) _mm_reset_ps(v, 2);
+#define _mm_reset_z_ps(v) _mm_reset_ps(v, 1);
+#define _mm_reset_w_ps(v) _mm_reset_ps(v, 0);
+
+#define _mm_keep_x_ps(v) _mm_keep_ps(v, 3);
+#define _mm_keep_y_ps(v) _mm_keep_ps(v, 2);
+#define _mm_keep_z_ps(v) _mm_keep_ps(v, 1);
+#define _mm_keep_w_ps(v) _mm_keep_ps(v, 0);
 
 // Function utilities
 
