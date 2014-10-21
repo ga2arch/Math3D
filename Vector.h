@@ -33,15 +33,11 @@ public:
                                    && are_same<float, T...>::value) >::type>
     Vector(T... cps): data(data_) {
         __declspec(align(16)) float t[4] = {cps...};
-        
-        // reverse because SSE is little endian
-        reverse(begin(t), end(t));
-        data_ = _mm_load_ps(t);
+        data_ = _mm_loadr_ps(t);
     };
     
     Vector(float (&vs)[4]) : data(data_) {
-        reverse(begin(vs), end(vs));
-        data_ = _mm_load_ps(vs);
+        data_ = _mm_loadr_ps(vs);
     }
 
     Vector(): data(data_) {};
