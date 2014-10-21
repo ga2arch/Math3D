@@ -9,15 +9,7 @@
 #ifndef vector_h_
 #define vector_h_
 
-#include <iostream>
-#include <algorithm>
-#include <iterator>
-
-#include <cmath>
-#include <mmintrin.h>
-#include <xmmintrin.h>
-#include <x86intrin.h>
-
+#include <immintrin.h>
 #include "Utils.h"
 
 using namespace std;

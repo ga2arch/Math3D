@@ -9,11 +9,7 @@
 #ifndef functions_h_
 #define functions_h_
 
-#include <cmath>
-#include <mmintrin.h>
-#include <xmmintrin.h>
-#include <x86intrin.h>
-#include <emmintrin.h>
+#include <immintrin.h>
 
 #include "Vector.h"
 #include "Matrix.h"

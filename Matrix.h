@@ -9,7 +9,6 @@
 #ifndef matrix_h_
 #define matrix_h_
 
-#include <iostream>
 #include "Vector.h"
 #include "Utils.h"
 
