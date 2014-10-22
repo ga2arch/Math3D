@@ -160,14 +160,13 @@ Vector<N> rotate(const Vector<N>& v, T... tqs) {
     auto q  = qs[sizeof...(T)-1];
     auto iq = qs[0];
     
+    int j = 1;
     for (int i=sizeof...(T)-2; i!=0; i--) {
         q = q * qs[i];
+        iq = iq * inverse(qs[i]);
+        j++;
     }
-    
-    for (int i=1; i<sizeof...(T)-2; i++) {
-        iq = iq * qs[i];
-    }
-    
+
     auto r = _mm_mul_ps(q.data, v.data);
     r = _mm_mul_ps(r, iq.data);
     
