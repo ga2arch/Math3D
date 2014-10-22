@@ -9,7 +9,6 @@
 #ifndef vector_h_
 #define vector_h_
 
-#include <immintrin.h>
 #include "Utils.h"
 
 using namespace std;

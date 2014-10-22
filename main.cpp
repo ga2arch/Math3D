@@ -9,12 +9,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "Vector.h"
-#include "Matrix.h"
-#include "Functions.h"
-#include "Utils.h"
-#include "Quaternion.h"
-#include "SSEFun.h"
+#include "Math.h"
 
 using namespace std;
 using namespace std::chrono;

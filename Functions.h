@@ -9,6 +9,8 @@
 #ifndef functions_h_
 #define functions_h_
 
+class Quaternion;
+
 #include <immintrin.h>
 
 #include "Vector.h"

@@ -9,14 +9,16 @@
 #ifndef matrix_h_
 #define matrix_h_
 
+class Quaternion;
+
+#include <immintrin.h>
 #include "Vector.h"
-#include "Utils.h"
+#include "Quaternion.h"
 
 using namespace std;
 
 template <size_t R, size_t C>
 class Matrix {
-    
 
 public:
     template <typename... T,
@@ -36,6 +38,10 @@ public:
             e *= s;
         }
         return *this;
+    }
+    
+    static Matrix<R,C> from_quaternion(const Quaternion& q) {
+        
     }
     
     template <size_t R1, size_t C1,

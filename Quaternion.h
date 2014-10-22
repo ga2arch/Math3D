@@ -10,9 +10,6 @@
 #define Math_Quaternion_h
 
 #include <immintrin.h>
-#include <smmintrin.h>
-
-#include "Functions.h"
 #include "Vector.h"
 #include "SSEFun.h"
 
