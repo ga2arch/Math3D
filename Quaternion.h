@@ -18,7 +18,7 @@ class Quaternion {
 public:
     Quaternion(): data(data_) {};
     Quaternion(__m128& m): data_(m), data(data_) {};
-    Quaternion(Vec3 v, float angle): data(data_) {
+    Quaternion(const Vec3& v, float angle): data(data_) {
         __declspec(align(16)) float t[4] = {
             angle/2.0f, angle/2.0f, angle/2.0f, angle/2.0f
         };
@@ -31,7 +31,7 @@ public:
         data_ = _mm_add_ps(r, ___a);
     };
     
-    Quaternion(Vec3 v, __m128 angle): data(data_) {
+    Quaternion(const Vec3& v, const __m128& angle): data(data_) {
         const auto ___a = _mm_keep_w_ps(v.data);
         data_ = _mm_add_ps(v.data, ___a);
     }

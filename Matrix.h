@@ -41,7 +41,14 @@ public:
     }
     
     static Matrix<R,C> from_quaternion(const Quaternion& q) {
+        // *2
+        auto s1 = _mm_mul_ps(q.data, _mm_set1_ps(2.0f));
         
+        // shuffle
+        __declspec(align(16)) float t[4] = {1.0f};
+        auto s2 = _mm_shuffle_ps(s1,
+                                 _mm_load_ps(t),
+                                 _MM_SHUFFLE(0,3,3,0));
     }
     
     template <size_t R1, size_t C1,

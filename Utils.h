@@ -46,7 +46,7 @@ __declspec(align(16)) static const int absmask[] = {
 
 // Function utilities
 
-__m128 debug(__m128 a) {
+__m128 debug(const __m128& a) {
     __declspec(align(16)) float A[4];
     _mm_store_ps(&A[0], a);
     
@@ -54,7 +54,7 @@ __m128 debug(__m128 a) {
     return a;
 }
 
-__m128 _mm_reset_ps(__m128 v, int pos) {
+__m128 _mm_reset_ps(const __m128& v, int pos) {
     __declspec(align(16)) float t[4] = {
         1, 1, 1, 1
     };
@@ -63,7 +63,7 @@ __m128 _mm_reset_ps(__m128 v, int pos) {
     return _mm_mul_ps(filter, v);
 }
 
-__m128 _mm_keep_ps(__m128 v, int pos) {
+__m128 _mm_keep_ps(const __m128& v, int pos) {
     __declspec(align(16)) float t[4] = {
         0, 0, 0, 0
     };

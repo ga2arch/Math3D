@@ -20,18 +20,21 @@ int main(int argc, const char * argv[]) {
     //auto m = normalize(v3);
     //auto b = dot(v1, v1);
     
-    Vec3 v1(4.0f, 1.0f, 1.0f);
-    Vec3 v2(4.0f, 8.0f, 1.0f);
-
+    Vec3 v1(4.0f, 4.0f, 3.0f);
+    Vec3 v2(4.0f, 8.0f, 2.0f);
+    
+    Vec4 v3(7.0f, 4.0f, 3.0f, 1.0f);
+    Vec4 v4(9.0f, 8.0f, 2.0f, 5.0f);
+    
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
     //auto id = Matrix<4,4>::identity();
     
     auto q  = Quaternion(v1, 10.0f);
     auto q1 = Quaternion(v1, 10.0f);
-    auto c = dot(v1, v2);
+    //auto c = dot(v1, v2);
     
-    debug(c);
+//    debug(b);
     
     auto t2 = high_resolution_clock::now();
     auto result = q*q1;
