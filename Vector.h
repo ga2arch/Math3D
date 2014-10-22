@@ -27,7 +27,7 @@ public:
         data_ = _mm_loadr_ps(t);
     };
     
-    Vector(float (&vs)[4]) : data(data_) {
+    Vector(const float (&vs)[4]) : data(data_) {
         data_ = _mm_loadr_ps(vs);
     }
 
