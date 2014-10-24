@@ -17,6 +17,4 @@
 #include "Quaternion.h"
 #include "Functions.h"
 
-#include "catch.hpp"
-
 #endif
