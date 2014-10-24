@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "Math.h"
+#include "3DMath.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -29,7 +29,7 @@ int main(int argc, const char * argv[]) {
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
     //auto id = Matrix<4,4>::identity();
-    auto _q = v3*v4;
+    //auto _q = v3*v4;
     auto q  = Quaternion(v1, 10.0f);
     auto q1 = Quaternion(v1, 10.0f);
     //auto c = dot(v1, v2);
