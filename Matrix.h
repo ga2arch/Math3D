@@ -87,7 +87,7 @@ private:
 #include "Quaternion.h"
 
 template<>
-auto Matrix<3,3>::quaternion() -> Quaternion {
+Quaternion Matrix<3,3>::quaternion() {
     // TODO 
     return Quaternion(Vec3(1.0f,1.0f,1.0f), 20);
 }
