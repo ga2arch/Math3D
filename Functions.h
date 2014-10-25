@@ -9,15 +9,6 @@
 #ifndef functions_h_
 #define functions_h_
 
-class Quaternion;
-
-#include <immintrin.h>
-
-#include "Vector.h"
-#include "Matrix.h"
-#include "Quaternion.h"
-#include "Utils.h"
-
 // Generic
 __m128 dot(const __m128& p, const __m128& q) {
 //    const auto m = _mm_mul_ps(p, q);
