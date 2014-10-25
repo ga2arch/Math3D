@@ -56,7 +56,6 @@ public:
         
         debug(v1);
         
-        s1 = _mm_add_ps(data, data); // 2x 2y 2z 2w
         t1 = _mm_shuffle_ps(s1, s1, _MM_SHUFFLE(3,3,2,0)); // 2x 2x 2y w
         
         t2 = _mm_shuffle_ps(data, data, _MM_SHUFFLE(2,3,1,0)); // y x z w
@@ -78,14 +77,13 @@ public:
         
         debug(v2);
         
-        s1 = _mm_add_ps(data, data); // 2x 2y 2z 2w
         t1 = _mm_shuffle_ps(s1, s1, _MM_SHUFFLE(3,2,3,0)); // 2x 2y 2x w
         
         t2 = _mm_shuffle_ps(data, data, _MM_SHUFFLE(1,1,3,0)); // z z x w
         t2 = _mm_reset_ps(t2, 0); // z z x 0
         
         t3 = _mm_mul_ps(t1, t2);
-        t3 = _mm_mul_ps(t3, _mm_set_ps(1.0f,1.0f,-1.0f,1.0f)); // 2xz 2yz -2x^2 0
+        t3 = _mm_mul_ps(t3, _mm_set_ps(1.0f,1.0f,-1.0f,-1.0f)); // 2xz 2yz -2x^2 0
         
         t4 = _mm_shuffle_ps(s1, s1, _MM_SHUFFLE(2,3,2,0)); // 2y 2x 2y w
         
