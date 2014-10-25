@@ -76,7 +76,7 @@ public:
         return Matrix<R,R>(tmp);
     }
     
-    static Quaternion to_quaternion();
+    Quaternion quaternion();
     
     const Vector<C> (&data)[R];
     
@@ -87,7 +87,7 @@ private:
 #include "Quaternion.h"
 
 template<>
-auto Matrix<3,3>::to_quaternion() -> Quaternion {
+auto Matrix<3,3>::quaternion() -> Quaternion {
     // TODO 
     return Quaternion(Vec3(1.0f,1.0f,1.0f), 20);
 }
