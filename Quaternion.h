@@ -34,7 +34,7 @@ public:
 
     Matrix<3,3> matrix() {
         
-        auto s1 = _mm_add_ps(data, data); // 2x 2y 2z 2w
+        auto const s1 = _mm_add_ps(data, data); // 2x 2y 2z 2w
         
         //First Row
         
