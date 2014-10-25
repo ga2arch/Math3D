@@ -32,7 +32,7 @@ public:
         data_ = _mm_add_ps(v.data, ___a);
     }
 
-    void to_matrix() {
+    Matrix<3,3> to_matrix() {
         
         auto s1 = _mm_add_ps(data, data); // 2x 2y 2z 2w
         auto t1 = _mm_shuffle_ps(s1, s1, _MM_SHUFFLE(2,3,3,0)); // 2y 2x 2x w
@@ -54,7 +54,7 @@ public:
         auto v1 = _mm_add_ps(_mm_set_ps(1.0f,0.0f,0.0f,0.0f), t3);
         v1 = _mm_add_ps(v1, t6);
         
-        debug(v1);
+        //debug(v1);
         
         t1 = _mm_shuffle_ps(s1, s1, _MM_SHUFFLE(3,3,2,0)); // 2x 2x 2y w
         
@@ -75,7 +75,7 @@ public:
         auto v2 = _mm_add_ps(_mm_set_ps(0.0f,1.0f,0.0f,0.0f), t3);
         v2 = _mm_add_ps(v2, t6);
         
-        debug(v2);
+        //debug(v2);
         
         t1 = _mm_shuffle_ps(s1, s1, _MM_SHUFFLE(3,2,3,0)); // 2x 2y 2x w
         
@@ -94,17 +94,18 @@ public:
         t6 = _mm_mul_ps(t4, t5);
         t6 = _mm_mul_ps(t6, _mm_set_ps(1.0f,-1.0f,-1.0f,1.0f)); // 2yw - 2xw - 2y^2
         
-        debug(t3);
-
+        //debug(t3);
+        
         
         auto v3 = _mm_add_ps(_mm_set_ps(0.0f,0.0f,1.0f,0.0f), t3);
         v3 = _mm_add_ps(v3, t6);
         
-        debug(v3);
-
+        //debug(v3);
+        
+        return Matrix<3,3>(Vec3(v1),Vec3(v2),Vec3(v3));
+        
     }
 
-    
     const __m128& data;
     
 private:

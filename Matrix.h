@@ -11,13 +11,11 @@
 
 class Quaternion;
 
-#include "Quaternion.h"
-
 using namespace std;
 
 template <size_t R, size_t C>
 class Matrix {
-
+    
 public:
     template <typename... T,
     typename = typename enable_if<(sizeof...(T) == R
@@ -36,17 +34,6 @@ public:
             e *= s;
         }
         return *this;
-    }
-    
-    static Matrix<R,C> from_quaternion(const Quaternion& q) {
-        // *2
-        auto s1 = _mm_mul_ps(q.data, _mm_set1_ps(2.0f));
-        
-        // shuffle
-        __declspec(align(16)) float t[4] = {1.0f};
-        auto s2 = _mm_shuffle_ps(s1,
-                                 _mm_load_ps(t),
-                                 _MM_SHUFFLE(0,3,3,0));
     }
     
     template <size_t R1, size_t C1,
@@ -89,10 +76,20 @@ public:
         return Matrix<R,R>(tmp);
     }
     
+    static Quaternion to_quaternion();
+    
     const Vector<C> (&data)[R];
     
 private:
     Vector<C> data_[R];
 };
+
+#include "Quaternion.h"
+
+template<>
+auto Matrix<3,3>::to_quaternion() -> Quaternion {
+    // TODO 
+    return Quaternion(Vec3(1.0f,1.0f,1.0f), 20);
+}
 
 #endif

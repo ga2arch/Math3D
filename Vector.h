@@ -11,7 +11,7 @@
 
 using namespace std;
 
-template <std::size_t N>
+template <size_t N>
 class Vector {
     
 public:
