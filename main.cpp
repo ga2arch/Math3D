@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     //auto _q = v3*v4;
     auto q  = Quaternion(v1, 10.0f);
     auto q1 = Quaternion(v1, 10.0f);
-    q.to_matrix();
+    q.matrix();
     //auto c = dot(v1, v2);
     
 //    debug(b);
