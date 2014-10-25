@@ -44,8 +44,8 @@ int main(int argc, const char * argv[]) {
     
     //cout << duration << endl;
     
-    //for (auto& e: q.data.data)
-        //debug(result.data);
+    for (auto& e: q.matrix().data)
+        debug(e.data);
     
 }
 
