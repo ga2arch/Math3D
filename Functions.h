@@ -11,16 +11,18 @@
 
 // Generic
 __m128 dot(const __m128& p, const __m128& q) {
-//    const auto m = _mm_mul_ps(p, q);
-//    const auto sum = _mm_hadd_ps(m, m);
-//    return _mm_hadd_ps(sum, sum);
-    
+#ifndef __SSE4_1__
+    const auto m = _mm_mul_ps(p, q);
+    const auto sum = _mm_hadd_ps(m, m);
+    return _mm_hadd_ps(sum, sum);
+#else
     // mask = 4-byte   4-byte
     //        x y z w  x y z w
     //        origin   destination
     //        1 = mul  0 = set 0
     // 0xFF = 1 1 1 1  1 1 1 1
     return _mm_dp_ps(p, q, 0x0FF);
+#endif
 }
 
 __m128 cross(const __m128& p, const __m128& q) {
