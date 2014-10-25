@@ -11,8 +11,6 @@
 
 class Quaternion;
 
-#include <immintrin.h>
-#include "Vector.h"
 #include "Quaternion.h"
 
 using namespace std;
