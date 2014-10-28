@@ -19,7 +19,6 @@ public:
         
         auto aaaa = _mm_replicate_w_ps(_mm_load_ps(t));
         auto ssss = sin_ps(aaaa);
-        
         auto cccc = cos_ps(aaaa);
         
         const auto r = _mm_mul_ps(v.data, ssss);

@@ -9,8 +9,6 @@
 #ifndef _DMath_VectorTest_h
 #define _DMath_VectorTest_h
 
-#include "Vector.h"
-
 SCENARIO( "Vectors", "[vector]" ) {
     
     GIVEN( "Vec1" ) {
