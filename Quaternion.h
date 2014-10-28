@@ -27,8 +27,7 @@ public:
     };
     
     Quaternion(const Vec3& v, const __m128& angle): data(data_) {
-        const auto ___a = _mm_keep_w_ps(v.data);
-        data_ = _mm_add_ps(v.data, ___a);
+        data_ = _mm_move_ss(v.data, angle);
     }
 
     Matrix<3,3> matrix() {
