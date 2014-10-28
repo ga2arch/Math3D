@@ -88,7 +88,7 @@ private:
 
 template<>
 Quaternion Matrix<3,3>::quaternion() {
-    // TODO 
+    
     return Quaternion(Vec3(1.0f,1.0f,1.0f), 20);
 }
 

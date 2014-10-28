@@ -15,16 +15,15 @@ public:
     Quaternion(): data(data_) {};
     Quaternion(__m128& m): data_(m), data(data_) {};
     Quaternion(const Vec3& v, float angle): data(data_) {
-        __declspec(align(16)) float t[4] = {
-            angle/2.0f, angle/2.0f, angle/2.0f, angle/2.0f
-        };
-        auto aaaa = _mm_load_ps(t);
-        aaaa = sin_ps(aaaa);
+        __declspec(align(16)) float t[4] = {angle/2.0f};
         
-        auto ___a = _mm_keep_w_ps(cos_ps(aaaa));
+        auto aaaa = _mm_replicate_w_ps(_mm_load_ps(t));
+        auto ssss = sin_ps(aaaa);
         
-        const auto r = _mm_mul_ps(v.data, aaaa);
-        data_ = _mm_add_ps(r, ___a);
+        auto cccc = cos_ps(aaaa);
+        
+        const auto r = _mm_mul_ps(v.data, ssss);
+        data_ = _mm_move_ss(r, cccc);
     };
     
     Quaternion(const Vec3& v, const __m128& angle): data(data_) {
@@ -33,7 +32,7 @@ public:
     }
 
     Matrix<3,3> matrix() {
-        return matrix(false);
+        return matrix(true);
     }
     
     Matrix<3,3> matrix(const bool reset) {
