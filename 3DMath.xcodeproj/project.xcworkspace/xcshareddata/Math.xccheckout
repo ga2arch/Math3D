@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2603CDE5-5C81-4485-A329-B11CF9472752</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</key>
+		<string>github.com:ga2arch/3DMath.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</key>
+		<string>Math/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:ga2arch/3DMath.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Math</string>
+		</dict>
+	</array>
+</dict>
+</plist>

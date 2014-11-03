@@ -1,0 +1,254 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A253DD4719F289E8000CDB99 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A253DD4619F289E8000CDB99 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A253DD4119F289E8000CDB99 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A23EE36C19F31D1100FC4233 /* Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		A24868CC19F81E1D00DAC25A /* 3DMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = 3DMath.h; sourceTree = "<group>"; };
+		A253DD4319F289E8000CDB99 /* 3DMath */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3DMath; sourceTree = BUILT_PRODUCTS_DIR; };
+		A253DD4619F289E8000CDB99 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A253DD5019F2C30E000CDB99 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		A264AA8C19F699FC00B44DB1 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		A264AA8D19F69D7B00B44DB1 /* SSEFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEFun.h; sourceTree = "<group>"; };
+		A2FA5B5919F3432400F5367C /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A2FA5B5B19F3F4B300F5367C /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A253DD4019F289E8000CDB99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A253DD3A19F289E8000CDB99 = {
+			isa = PBXGroup;
+			children = (
+				A253DD4519F289E8000CDB99 /* 3DMath */,
+				A253DD4419F289E8000CDB99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A253DD4419F289E8000CDB99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A253DD4319F289E8000CDB99 /* 3DMath */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A253DD4519F289E8000CDB99 /* 3DMath */ = {
+			isa = PBXGroup;
+			children = (
+				A24868CC19F81E1D00DAC25A /* 3DMath.h */,
+				A264AA8D19F69D7B00B44DB1 /* SSEFun.h */,
+				A253DD4619F289E8000CDB99 /* main.cpp */,
+				A253DD5019F2C30E000CDB99 /* Vector.h */,
+				A264AA8C19F699FC00B44DB1 /* Quaternion.h */,
+				A2FA5B5B19F3F4B300F5367C /* Matrix.h */,
+				A23EE36C19F31D1100FC4233 /* Functions.h */,
+				A2FA5B5919F3432400F5367C /* Utils.h */,
+			);
+			name = 3DMath;
+			path = Math;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A253DD4219F289E8000CDB99 /* 3DMath */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A253DD4C19F289E8000CDB99 /* Build configuration list for PBXNativeTarget "3DMath" */;
+			buildPhases = (
+				A253DD3F19F289E8000CDB99 /* Sources */,
+				A253DD4019F289E8000CDB99 /* Frameworks */,
+				A253DD4119F289E8000CDB99 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 3DMath;
+			productName = Math;
+			productReference = A253DD4319F289E8000CDB99 /* 3DMath */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A253DD3B19F289E8000CDB99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Ga2 & co";
+			};
+			buildConfigurationList = A253DD3E19F289E8000CDB99 /* Build configuration list for PBXProject "3DMath" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A253DD3A19F289E8000CDB99;
+			productRefGroup = A253DD4419F289E8000CDB99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A253DD4219F289E8000CDB99 /* 3DMath */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A253DD3F19F289E8000CDB99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A253DD4719F289E8000CDB99 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A253DD4A19F289E8000CDB99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A253DD4B19F289E8000CDB99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A253DD4D19F289E8000CDB99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				OTHER_CPLUSPLUSFLAGS = "-msse4.1";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = 3DMath;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		A253DD4E19F289E8000CDB99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				OTHER_CPLUSPLUSFLAGS = "-msse4.1";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = 3DMath;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A253DD3E19F289E8000CDB99 /* Build configuration list for PBXProject "3DMath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A253DD4A19F289E8000CDB99 /* Debug */,
+				A253DD4B19F289E8000CDB99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A253DD4C19F289E8000CDB99 /* Build configuration list for PBXNativeTarget "3DMath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A253DD4D19F289E8000CDB99 /* Debug */,
+				A253DD4E19F289E8000CDB99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A253DD3B19F289E8000CDB99 /* Project object */;
+}
