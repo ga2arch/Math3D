@@ -6,15 +6,19 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5C8004B7-35E7-4C9F-A4E6-7C102C6BAA6D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>3DMath</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</key>
 		<string>github.com:ga2arch/3DMath.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>3DMath.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</key>
-		<string>Math/</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:ga2arch/3DMath.git</string>
@@ -30,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Math</string>
+			<string>3DMath</string>
 		</dict>
 	</array>
 </dict>

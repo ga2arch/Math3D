@@ -73,8 +73,7 @@
 				A23EE36C19F31D1100FC4233 /* Functions.h */,
 				A2FA5B5919F3432400F5367C /* Utils.h */,
 			);
-			name = 3DMath;
-			path = Math;
+			path = 3DMath;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
