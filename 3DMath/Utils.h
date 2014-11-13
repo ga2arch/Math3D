@@ -76,19 +76,16 @@ __m128 _mm_keep_ps(const __m128& v, int pos) {
 
 // Template utilities
 
-using true_value  = std::integral_constant<bool, true>;
-using false_value = std::integral_constant<bool, false>;
-
 template <typename... List>
 struct are_same;
 
 template <typename X, typename Y, typename...XS>
-struct are_same<X, Y, XS...>: false_value {};
+struct are_same<X, Y, XS...>: std::false_type {};
 
 template <typename X, typename...XS>
 struct are_same<X, X, XS...>: are_same<X,XS...> {};
 
 template <typename X>
-struct are_same<X, X>: true_value {};
+struct are_same<X, X>: std::true_type {};
 
 #endif
