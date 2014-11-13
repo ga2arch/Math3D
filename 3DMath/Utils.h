@@ -73,18 +73,24 @@ __m128 _mm_keep_ps(const __m128& v, int pos) {
 }
 
 // Template utilities
+struct true_value {
+    static constexpr bool value = true;
+};
 
-template <typename ...T>
+struct false_value {
+    static constexpr bool value = false;
+};
+
+template <typename... List>
 struct are_same;
 
-template <typename A, typename B, typename ...T>
-struct are_same<A, B, T...> {
-    static const bool value = std::is_same<A, B>::value && are_same<B, T...>::value;
-};
+template <typename X, typename Y, typename...XS>
+struct are_same<X, Y, XS...>: false_value {};
 
-template <typename A>
-struct are_same<A> {
-    static const bool value = true;
-};
+template <typename X, typename...XS>
+struct are_same<X, X, XS...>: are_same<X,XS...> {};
+
+template <typename X>
+struct are_same<X, X>: true_value {};
 
 #endif
