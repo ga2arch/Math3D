@@ -9,6 +9,8 @@
 #ifndef utils_h_
 #define utils_h_
 
+#include <type_traits>
+
 // Macros
 
 // Single precision float have sign bit at 31° bit
@@ -73,13 +75,9 @@ __m128 _mm_keep_ps(const __m128& v, int pos) {
 }
 
 // Template utilities
-struct true_value {
-    static constexpr bool value = true;
-};
 
-struct false_value {
-    static constexpr bool value = false;
-};
+using true_value  = std::integral_constant<bool, true>;
+using false_value = std::integral_constant<bool, false>;
 
 template <typename... List>
 struct are_same;
