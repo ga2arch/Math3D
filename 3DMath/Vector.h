@@ -141,9 +141,9 @@ protected:
 
 };
 
-typedef Vector<1> Vec1;
-typedef Vector<2> Vec2;
-typedef Vector<3> Vec3;
-typedef Vector<4> Vec4;
+using Vec1 = Vector<1>;
+using Vec2 = Vector<2>;
+using Vec3 = Vector<3>;
+using Vec4 = Vector<4>;
 
 #endif
