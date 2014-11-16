@@ -39,12 +39,59 @@ public:
         return *this;
     }
     
-    Vector operator+(const Vector& d) const {
-        return Vector(_mm_add_ps(data, d()));
+    Vector& operator=(Vector<N>&& v) {
+        data_ = std::move(v.data);
+        return *this;
+    }
+    
+    // By Vector
+    
+    Vector operator+(const Vector& d) {
+        return Vector(_mm_add_ps(data, d.data));
     }
     
     Vector& operator+=(const Vector& d) {
         data_ = _mm_add_ps(data, d.data);
+        return *this;
+    }
+    
+    Vector operator-(const Vector& d) {
+        return Vector(_mm_sub_ps(data, d.data));
+    }
+    
+    Vector& operator-=(const Vector& d) {
+        data_ = _mm_sub_ps(data, d.data);
+        return *this;
+    }
+    
+    Vector operator*(const Vector& d) {
+        return Vector(_mm_mul_ps(data, d.data));
+    }
+    
+    Vector& operator*=(const Vector& d) {
+        data_ = _mm_mul_ps(data, d.data);
+        return *this;
+    }
+    
+    Vector operator/(const Vector& d) {
+        return Vector(_mm_div_ps(data, d.data));
+    }
+    
+    Vector& operator/=(const Vector& d) {
+        data_ = _mm_div_ps(data, d.data);
+        return *this;
+    }
+    
+    // By Scalar
+    
+    Vector operator+(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        return Vector(_mm_add_ps(data, tmp));
+    }
+    
+    Vector& operator+=(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        data_ = _mm_add_ps(data, tmp);
         return *this;
     }
     
@@ -56,6 +103,17 @@ public:
     Vector& operator*=(const float s) {
         auto tmp = _mm_set_ps1(s);
         data_ = _mm_mul_ps(tmp, data);
+        return *this;
+    }
+    
+    Vector operator/(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        return Vector(_mm_div_ps(data, tmp));
+    }
+    
+    Vector& operator/=(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        data = _mm_div_ps(data, tmp);
         return *this;
     }
     
