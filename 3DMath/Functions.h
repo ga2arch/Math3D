@@ -159,7 +159,7 @@ template <size_t N, typename... T>
 Vector<N> rotate(const Vector<N>& v, T... tqs) {
     Quaternion qs[]{tqs...};
     auto q  = qs[sizeof...(T)-1];
-    auto iq = qs[0];
+    auto iq = inverse(qs[0]);
     
     int j = 1;
     for (int i=sizeof...(T)-2; i!=0; i--) {
