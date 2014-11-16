@@ -31,6 +31,7 @@ public:
 
     Vector(): data(data_) {};
     Vector(const Vector<N>& v): data_(v.data), data(data_) {};
+    Vector(Vector<N>&& v): data_(std::move(v.data)), data(data_) {};
     Vector(const __m128& d): data_(d), data(data_) {};
 
     Vector& operator=(const Vector<N>& v) {
