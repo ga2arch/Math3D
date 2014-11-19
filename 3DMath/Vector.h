@@ -95,6 +95,17 @@ public:
         return *this;
     }
     
+    Vector operator-(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        return Vector(_mm_sub_ps(data, tmp));
+    }
+    
+    Vector& operator-=(const float s) {
+        auto tmp = _mm_set_ps1(s);
+        data_ = _mm_sub_ps(data, tmp);
+        return *this;
+    }
+    
     Vector operator*(const float s) {
         auto tmp = _mm_set_ps1(s);
         return Vector(_mm_mul_ps(data, tmp));

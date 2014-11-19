@@ -20,6 +20,67 @@ TEST(VectorTest, Creation) {
     }
 }
 
+TEST(VectorTest, SumByFloat) {
+    
+    Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
+    
+    auto v3 = v1 + 3.0f;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v3.data);
+    
+    ASSERT_EQ(t[0], 1.0f + 3.0f);
+    ASSERT_EQ(t[1], 2.0f + 3.0f);
+    ASSERT_EQ(t[2], 5.0f + 3.0f);
+    ASSERT_EQ(t[3], 6.0f + 3.0f);
+}
+
+TEST(VectorTest, SubByFloat) {
+    
+    Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
+    
+    auto v3 = v1 - 3.0f;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v3.data);
+    
+    ASSERT_EQ(t[0], 1.0f - 3.0f);
+    ASSERT_EQ(t[1], 2.0f - 3.0f);
+    ASSERT_EQ(t[2], 5.0f - 3.0f);
+    ASSERT_EQ(t[3], 6.0f - 3.0f);
+}
+
+TEST(VectorTest, MulByFloat) {
+    
+    Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
+    
+    auto v3 = v1 * 3.0f;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v3.data);
+    
+    ASSERT_EQ(t[0], 1.0f * 3.0f);
+    ASSERT_EQ(t[1], 2.0f * 3.0f);
+    ASSERT_EQ(t[2], 5.0f * 3.0f);
+    ASSERT_EQ(t[3], 6.0f * 3.0f);
+}
+
+TEST(VectorTest, DivByFloat) {
+    
+    Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
+    
+    auto v3 = v1 / 3.0f;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v3.data);
+    
+    ASSERT_EQ(t[0], 1.0f / 3.0f);
+    ASSERT_EQ(t[1], 2.0f / 3.0f);
+    ASSERT_EQ(t[2], 5.0f / 3.0f);
+    ASSERT_EQ(t[3], 6.0f / 3.0f);
+}
+
+
 TEST(VectorTest, Sum) {
     
     Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
