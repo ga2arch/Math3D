@@ -29,6 +29,13 @@ public:
         }
     };
     
+    Matrix<R,C>& operator=(const Matrix<R,C>& m) {
+        std::memset(data_, 0, R);
+        std::memcpy(data_, m.data_, R);
+        
+        return *this;
+    }
+    
     Matrix<R,C>& operator*=(const float s) {
         for (auto& e: data_) {
             e *= s;
