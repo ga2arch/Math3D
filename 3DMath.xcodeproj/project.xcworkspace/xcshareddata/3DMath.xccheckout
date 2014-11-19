@@ -10,6 +10,8 @@
 	<string>3DMath</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>2ACE5AD0D0C497BE009DB21A2D3BAE80F559320A</key>
+		<string>github.com:ga2arch/SGL.git</string>
 		<key>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</key>
 		<string>github.com:ga2arch/3DMath.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>3DMath.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>2ACE5AD0D0C497BE009DB21A2D3BAE80F559320A</key>
+		<string>../../../SGL</string>
 		<key>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</key>
 		<string>../..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>8562354CB3EEF0EA9276EC9BAFF2F4C6D46068C0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>3DMath</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2ACE5AD0D0C497BE009DB21A2D3BAE80F559320A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SGL</string>
 		</dict>
 	</array>
 </dict>
