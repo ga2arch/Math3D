@@ -124,7 +124,7 @@ public:
     
     Vector& operator/=(const float s) {
         auto tmp = _mm_set_ps1(s);
-        data = _mm_div_ps(data, tmp);
+        data_ = _mm_div_ps(data, tmp);
         return *this;
     }
     
