@@ -128,21 +128,19 @@ public:
         return *this;
     }
     
-    __m128 magnitude() const {
+    __m128 squared_magnitude() const {
         // (1,2,3,4) * (1,2,3,4) = (1,4,9,16)
         auto exp = _mm_mul_ps(data, data);
         
         // (1+4, 9+16, 1+4, 9+16) = (5, 15, 5, 15)
         auto sum = _mm_hadd_ps(exp, exp);
         
-        // sqrt(5+15, 5+15, 5+15, 5+15) = sqrt(20, 20, 20, 20)
-        return _mm_sqrt_ps(_mm_hadd_ps(sum, sum));
+        // (5+15, 5+15, 5+15, 5+15) = (20, 20, 20, 20)
+        return _mm_hadd_ps(sum, sum);
     }
     
-    __m128 squared_magnitude() const {
-        auto exp = _mm_mul_ps(data, data);
-        auto sum = _mm_hadd_ps(exp, exp);
-        return _mm_hadd_ps(sum, sum);
+    __m128 magnitude() const {
+        return _mm_sqrt_ps(squared_magnitude());
     }
     
     const __m128& data;
@@ -151,6 +149,17 @@ protected:
     __m128 data_;
 
 };
+
+template<>
+__m128 Vector<4>::squared_magnitude() const {
+#ifndef __SSE4_1__
+    const auto m = _mm_mul_ps(data_, data_);
+    const auto sum = _mm_hadd_ps(m, m);
+    return _mm_hadd_ps(sum, sum);
+#else
+    return _mm_dp_ps(data_, data_, 0x0FF);
+#endif
+}
 
 using Vec1 = Vector<1>;
 using Vec2 = Vector<2>;

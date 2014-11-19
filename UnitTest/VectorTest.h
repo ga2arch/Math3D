@@ -10,6 +10,7 @@
 #define ___DMath__VectorTest__
 
 #include <stdio.h>
+#include <cmath>
 #include <gtest/gtest.h>
 #include "3DMath.h"
 

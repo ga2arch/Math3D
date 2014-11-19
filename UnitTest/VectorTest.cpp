@@ -8,6 +8,8 @@
 
 #include "VectorTest.h"
 
+// VECTOR<4>
+
 TEST(Vector4Test, Creation) {
     
     Vector<4> v(1.0f,1.0f,1.0f,1.0f);
@@ -229,6 +231,8 @@ TEST(Vector4Test, Div) {
     ASSERT_EQ(t1[3], 6.0f / 7.0f);
 }
 
+// VECTOR<3>
+
 TEST(Vector3Test, Creation) {
     
     Vector<3> v(1.0f,1.0f,1.0f);
@@ -446,4 +450,30 @@ TEST(Vector3Test, Div) {
     ASSERT_EQ(t1[0], 1.0f / 2.0f);
     ASSERT_EQ(t1[1], 2.0f / 3.0f);
     ASSERT_EQ(t1[2], 5.0f / 4.0f);
+}
+
+TEST(Vector4Test, Magnitude) {
+    Vector<4> v(2.0f,3.0f,4.0f,6.0f);
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v.magnitude());
+    
+    float m = sqrt(4 + 9 + 16 + 36); // dot product
+    
+    for (int i=0; i<4; i++) {
+        ASSERT_EQ(t[i], m);
+    }
+}
+
+TEST(Vector3Test, Magnitude) {
+    Vector<3> v(2.0f,3.0f,4.0f);
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v.magnitude());
+    
+    float m = sqrt(4 + 9 + 16);
+    
+    for (int i=0; i<4; i++) {
+        ASSERT_EQ(t[i], m);
+    }
 }
