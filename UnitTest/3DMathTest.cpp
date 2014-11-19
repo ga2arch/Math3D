@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
-#include "VectorTest.h"
+#include "3DMathTest.h"
+
+// ================ VECTORS ================
 
 // VECTOR<4>
 
@@ -475,5 +477,40 @@ TEST(Vector3Test, Magnitude) {
     
     for (int i=0; i<4; i++) {
         ASSERT_EQ(t[i], m);
+    }
+}
+
+// ================ MATRIX ================
+
+TEST(Matrix, Creation) {
+    
+    Matrix<4,4> m (Vector<4>(1.0f, 1.0f, 1.0f, 1.0f),
+                   Vector<4>(1.0f, 1.0f, 1.0f, 1.0f),
+                   Vector<4>(1.0f, 1.0f, 1.0f, 1.0f),
+                   Vector<4>(1.0f, 1.0f, 1.0f, 1.0f));
+    
+    
+    for (int i=0; i < 4; i++) {
+        __declspec(align(16)) float t[4];
+        _mm_storer_ps(t, m.data[i].data);
+
+        for (int j=0; j < 4; j++) {
+
+            ASSERT_EQ(t[j], 1.0f);
+        }
+    }
+}
+
+TEST(Matrix, Identity) {
+    auto m = Matrix<4, 4>::identity();
+    
+    for (int i=0; i < 4; i++) {
+        __declspec(align(16)) float t[4];
+        _mm_storer_ps(t, m.data[i].data);
+        
+        for (int j=0; j < 4; j++) {
+            if (j == i) ASSERT_EQ(t[j], 1.0f);
+            else ASSERT_EQ(t[j], 0.0f);
+        }
     }
 }
