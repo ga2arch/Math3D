@@ -20,7 +20,7 @@ TEST(Vector4Test, Creation) {
     _mm_store_ps(t, v.data);
     
     for (int i=0; i < 4; i++) {
-        ASSERT_EQ(t[i], 1.0f);
+        ASSERT_FLOAT_EQ(t[i], 1.0f);
     }
 }
 
@@ -33,20 +33,20 @@ TEST(Vector4Test, SumByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f + 3.0f);
-    ASSERT_EQ(t[1], 2.0f + 3.0f);
-    ASSERT_EQ(t[2], 5.0f + 3.0f);
-    ASSERT_EQ(t[3], 6.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f + 3.0f);
     
      v1 += 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f + 3.0f);
-    ASSERT_EQ(t1[1], 2.0f + 3.0f);
-    ASSERT_EQ(t1[2], 5.0f + 3.0f);
-    ASSERT_EQ(t1[3], 6.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f + 3.0f);
 }
 
 TEST(Vector4Test, SubByFloat) {
@@ -58,20 +58,20 @@ TEST(Vector4Test, SubByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f - 3.0f);
-    ASSERT_EQ(t[1], 2.0f - 3.0f);
-    ASSERT_EQ(t[2], 5.0f - 3.0f);
-    ASSERT_EQ(t[3], 6.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f - 3.0f);
     
     v1 -= 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f - 3.0f);
-    ASSERT_EQ(t1[1], 2.0f - 3.0f);
-    ASSERT_EQ(t1[2], 5.0f - 3.0f);
-    ASSERT_EQ(t1[3], 6.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f - 3.0f);
 
 }
 
@@ -84,20 +84,20 @@ TEST(Vector4Test, MulByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f * 3.0f);
-    ASSERT_EQ(t[1], 2.0f * 3.0f);
-    ASSERT_EQ(t[2], 5.0f * 3.0f);
-    ASSERT_EQ(t[3], 6.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f * 3.0f);
     
     v1 *= 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f * 3.0f);
-    ASSERT_EQ(t1[1], 2.0f * 3.0f);
-    ASSERT_EQ(t1[2], 5.0f * 3.0f);
-    ASSERT_EQ(t1[3], 6.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f * 3.0f);
 
 }
 
@@ -110,20 +110,20 @@ TEST(Vector4Test, DivByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f / 3.0f);
-    ASSERT_EQ(t[1], 2.0f / 3.0f);
-    ASSERT_EQ(t[2], 5.0f / 3.0f);
-    ASSERT_EQ(t[3], 6.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f / 3.0f);
     
     v1 /= 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f / 3.0f);
-    ASSERT_EQ(t1[1], 2.0f / 3.0f);
-    ASSERT_EQ(t1[2], 5.0f / 3.0f);
-    ASSERT_EQ(t1[3], 6.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f / 3.0f);
 
 }
 
@@ -138,20 +138,20 @@ TEST(Vector4Test, Sum) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f + 2.0f);
-    ASSERT_EQ(t[1], 2.0f + 3.0f);
-    ASSERT_EQ(t[2], 5.0f + 4.0f);
-    ASSERT_EQ(t[3], 6.0f + 7.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f + 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f + 4.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f + 7.0f);
     
     v1 += v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f + 2.0f);
-    ASSERT_EQ(t1[1], 2.0f + 3.0f);
-    ASSERT_EQ(t1[2], 5.0f + 4.0f);
-    ASSERT_EQ(t1[3], 6.0f + 7.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f + 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f + 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f + 7.0f);
 
 }
 
@@ -165,20 +165,20 @@ TEST(Vector4Test, Sub) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f - 2.0f);
-    ASSERT_EQ(t[1], 2.0f - 3.0f);
-    ASSERT_EQ(t[2], 5.0f - 4.0f);
-    ASSERT_EQ(t[3], 6.0f - 7.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f - 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f - 4.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f - 7.0f);
     
     v1 -= v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f - 2.0f);
-    ASSERT_EQ(t1[1], 2.0f - 3.0f);
-    ASSERT_EQ(t1[2], 5.0f - 4.0f);
-    ASSERT_EQ(t1[3], 6.0f - 7.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f - 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f - 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f - 7.0f);
 }
 
 TEST(Vector4Test, Mul) {
@@ -191,20 +191,20 @@ TEST(Vector4Test, Mul) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 2.0f);
-    ASSERT_EQ(t[1], 6.0f);
-    ASSERT_EQ(t[2], 20.0f);
-    ASSERT_EQ(t[3], 42.0f);
+    ASSERT_FLOAT_EQ(t[0], 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 6.0f);
+    ASSERT_FLOAT_EQ(t[2], 20.0f);
+    ASSERT_FLOAT_EQ(t[3], 42.0f);
     
     v1 *= v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f * 2.0f);
-    ASSERT_EQ(t1[1], 2.0f * 3.0f);
-    ASSERT_EQ(t1[2], 5.0f * 4.0f);
-    ASSERT_EQ(t1[3], 6.0f * 7.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f * 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f * 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f * 7.0f);
 }
 
 TEST(Vector4Test, Div) {
@@ -217,20 +217,20 @@ TEST(Vector4Test, Div) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f/2.0f);
-    ASSERT_EQ(t[1], 2.0f/3.0f);
-    ASSERT_EQ(t[2], 5.0f/4.0f);
-    ASSERT_EQ(t[3], 6.0f/7.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f/2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f/3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f/4.0f);
+    ASSERT_FLOAT_EQ(t[3], 6.0f/7.0f);
     
     v1 /= v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f / 2.0f);
-    ASSERT_EQ(t1[1], 2.0f / 3.0f);
-    ASSERT_EQ(t1[2], 5.0f / 4.0f);
-    ASSERT_EQ(t1[3], 6.0f / 7.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f / 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f / 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 6.0f / 7.0f);
 }
 
 // VECTOR<3>
@@ -243,10 +243,10 @@ TEST(Vector3Test, Creation) {
     _mm_storer_ps(t, v.data);
     
     for (int i=0; i < 3; i++) {
-        ASSERT_EQ(t[i], 1.0f);
+        ASSERT_FLOAT_EQ(t[i], 1.0f);
     }
     
-    ASSERT_EQ(t[3], 0.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
 }
 
 TEST(Vector3Test, SumByFloat) {
@@ -258,20 +258,20 @@ TEST(Vector3Test, SumByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f + 3.0f);
-    ASSERT_EQ(t[1], 2.0f + 3.0f);
-    ASSERT_EQ(t[2], 5.0f + 3.0f);
-    ASSERT_EQ(t[3], 3.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 3.0f);
     
     v1 += 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f + 3.0f);
-    ASSERT_EQ(t1[1], 2.0f + 3.0f);
-    ASSERT_EQ(t1[2], 5.0f + 3.0f);
-    ASSERT_EQ(t1[3], 3.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 3.0f);
 }
 
 TEST(Vector3Test, SubByFloat) {
@@ -283,20 +283,20 @@ TEST(Vector3Test, SubByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f - 3.0f);
-    ASSERT_EQ(t[1], 2.0f - 3.0f);
-    ASSERT_EQ(t[2], 5.0f - 3.0f);
-    ASSERT_EQ(t[3], -3.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[3], -3.0f);
     
     v1 -= 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f - 3.0f);
-    ASSERT_EQ(t1[1], 2.0f - 3.0f);
-    ASSERT_EQ(t1[2], 5.0f - 3.0f);
-    ASSERT_EQ(t1[3], -3.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], -3.0f);
 }
 
 TEST(Vector3Test, MulByFloat) {
@@ -308,20 +308,20 @@ TEST(Vector3Test, MulByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f * 3.0f);
-    ASSERT_EQ(t[1], 2.0f * 3.0f);
-    ASSERT_EQ(t[2], 5.0f * 3.0f);
-    ASSERT_EQ(t[3], 0.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
     
     v1 *= 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f * 3.0f);
-    ASSERT_EQ(t1[1], 2.0f * 3.0f);
-    ASSERT_EQ(t1[2], 5.0f * 3.0f);
-    ASSERT_EQ(t1[3], 0.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 0.0f);
 }
 
 TEST(Vector3Test, DivByFloat) {
@@ -333,20 +333,20 @@ TEST(Vector3Test, DivByFloat) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f / 3.0f);
-    ASSERT_EQ(t[1], 2.0f / 3.0f);
-    ASSERT_EQ(t[2], 5.0f / 3.0f);
-    ASSERT_EQ(t[3], 0.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
     
     v1 /= 3.0f;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f / 3.0f);
-    ASSERT_EQ(t1[1], 2.0f / 3.0f);
-    ASSERT_EQ(t1[2], 5.0f / 3.0f);
-    ASSERT_EQ(t1[3], 0.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[3], 0.0f);
 }
 
 TEST(Vector3Test, Sum) {
@@ -359,20 +359,20 @@ TEST(Vector3Test, Sum) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f + 2.0f);
-    ASSERT_EQ(t[1], 2.0f + 3.0f);
-    ASSERT_EQ(t[2], 5.0f + 4.0f);
-    ASSERT_EQ(t[3], 0.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f + 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f + 4.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
     
     v1 += v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f + 2.0f);
-    ASSERT_EQ(t1[1], 2.0f + 3.0f);
-    ASSERT_EQ(t1[2], 5.0f + 4.0f);
-    ASSERT_EQ(t1[3], 0.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f + 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f + 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f + 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 0.0f);
     
 }
 
@@ -386,20 +386,20 @@ TEST(Vector3Test, Sub) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f - 2.0f);
-    ASSERT_EQ(t[1], 2.0f - 3.0f);
-    ASSERT_EQ(t[2], 5.0f - 4.0f);
-    ASSERT_EQ(t[3], 0.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f - 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f - 4.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
     
     v1 -= v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f - 2.0f);
-    ASSERT_EQ(t1[1], 2.0f - 3.0f);
-    ASSERT_EQ(t1[2], 5.0f - 4.0f);
-    ASSERT_EQ(t1[3], 0.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f - 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f - 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f - 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 0.0f);
     
 }
 
@@ -413,20 +413,20 @@ TEST(Vector3Test, Mul) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f * 2.0f);
-    ASSERT_EQ(t[1], 2.0f * 3.0f);
-    ASSERT_EQ(t[2], 5.0f * 4.0f);
-    ASSERT_EQ(t[3], 0.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f * 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f * 4.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
     
     v1 *= v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f * 2.0f);
-    ASSERT_EQ(t1[1], 2.0f * 3.0f);
-    ASSERT_EQ(t1[2], 5.0f * 4.0f);
-    ASSERT_EQ(t1[3], 0.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f * 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f * 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f * 4.0f);
+    ASSERT_FLOAT_EQ(t1[3], 0.0f);
     
 }
 
@@ -440,18 +440,18 @@ TEST(Vector3Test, Div) {
     __declspec(align(16)) float t[4];
     _mm_storer_ps(t, v3.data);
     
-    ASSERT_EQ(t[0], 1.0f / 2.0f);
-    ASSERT_EQ(t[1], 2.0f / 3.0f);
-    ASSERT_EQ(t[2], 5.0f / 4.0f);
+    ASSERT_FLOAT_EQ(t[0], 1.0f / 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 5.0f / 4.0f);
     
     v1 /= v2;
     
     __declspec(align(16)) float t1[4];
     _mm_storer_ps(t1, v1.data);
     
-    ASSERT_EQ(t1[0], 1.0f / 2.0f);
-    ASSERT_EQ(t1[1], 2.0f / 3.0f);
-    ASSERT_EQ(t1[2], 5.0f / 4.0f);
+    ASSERT_FLOAT_EQ(t1[0], 1.0f / 2.0f);
+    ASSERT_FLOAT_EQ(t1[1], 2.0f / 3.0f);
+    ASSERT_FLOAT_EQ(t1[2], 5.0f / 4.0f);
 }
 
 TEST(Vector4Test, Magnitude) {
@@ -463,7 +463,7 @@ TEST(Vector4Test, Magnitude) {
     float m = sqrt(4 + 9 + 16 + 36); // dot product
     
     for (int i=0; i<4; i++) {
-        ASSERT_EQ(t[i], m);
+        ASSERT_FLOAT_EQ(t[i], m);
     }
 }
 
@@ -476,7 +476,7 @@ TEST(Vector3Test, Magnitude) {
     float m = sqrt(4 + 9 + 16);
     
     for (int i=0; i<4; i++) {
-        ASSERT_EQ(t[i], m);
+        ASSERT_FLOAT_EQ(t[i], m);
     }
 }
 
@@ -496,7 +496,7 @@ TEST(Matrix, Creation) {
 
         for (int j=0; j < 4; j++) {
 
-            ASSERT_EQ(t[j], 1.0f);
+            ASSERT_FLOAT_EQ(t[j], 1.0f);
         }
     }
 }
@@ -509,8 +509,61 @@ TEST(Matrix, Identity) {
         _mm_storer_ps(t, m.data[i].data);
         
         for (int j=0; j < 4; j++) {
-            if (j == i) ASSERT_EQ(t[j], 1.0f);
-            else ASSERT_EQ(t[j], 0.0f);
+            if (j == i) ASSERT_FLOAT_EQ(t[j], 1.0f);
+            else ASSERT_FLOAT_EQ(t[j], 0.0f);
         }
     }
+}
+
+// TODO add more
+
+// ================ QUATERNION ================
+
+TEST(Quaternion, Creation) {
+    Vector<3> v(1.0f, 3.0f, 4.0f);
+    float angle = 10.0f;
+    
+    Quaternion q(v, angle);
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, q.data);
+    
+    ASSERT_FLOAT_EQ(t[0], 1.0f * sin(angle/2));
+    ASSERT_FLOAT_EQ(t[1], 3.0f * sin(angle/2));
+    ASSERT_FLOAT_EQ(t[2], 4.0f * sin(angle/2));
+    ASSERT_FLOAT_EQ(t[3], cos(angle/2));
+}
+
+TEST(Quaternion, ToMatrix) {
+    Vector<3> v(1.0f, 3.0f, 4.0f);
+    float angle = 10.0f;
+    
+    Quaternion q(v, angle);
+    auto m = q.matrix();
+    
+    auto x = 1.0f * sin(angle/2);
+    auto y = 3.0f * sin(angle/2);
+    auto z = 4.0f * sin(angle/2);
+    auto w = cos(angle/2);
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 1 - 2*y*y - 2*z*z);
+    ASSERT_FLOAT_EQ(t[1], 2*x*y + 2*z*w);
+    ASSERT_FLOAT_EQ(t[2], 2*x*z - 2*y*w);
+    
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2*x*y - 2*z*w);
+    ASSERT_FLOAT_EQ(t[1], 1 - 2*x*x - 2*z*z);
+    ASSERT_FLOAT_EQ(t[2], 2*y*z + 2*x*w);
+    
+    _mm_storer_ps(t, m.data[2].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2*x*z + 2*y*w);
+    ASSERT_FLOAT_EQ(t[1], 2*y*z - 2*x*w);
+    ASSERT_FLOAT_EQ(t[2], 1 - 2*x*x - 2*y*y);
+    
+    
 }
