@@ -362,6 +362,7 @@
 				E0979DA81A1CEC3000EBC2B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
