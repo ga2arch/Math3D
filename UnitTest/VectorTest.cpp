@@ -20,6 +20,22 @@ TEST(VectorTest, Creation) {
     }
 }
 
+TEST(VectorTest, Sum) {
+    
+    Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
+    Vector<4> v2(2.0f,3.0f,4.0f,7.0f);
+    
+    auto v3 = v1 + v2;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, v3.data);
+    
+    ASSERT_EQ(t[0], 1.0f + 2.0f);
+    ASSERT_EQ(t[1], 2.0f + 3.0f);
+    ASSERT_EQ(t[2], 5.0f + 4.0f);
+    ASSERT_EQ(t[3], 6.0f + 7.0f);
+}
+
 TEST(VectorTest, Sub) {
     
     Vector<4> v1(1.0f,2.0f,5.0f,6.0f);
