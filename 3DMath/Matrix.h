@@ -59,11 +59,11 @@ public:
     template <size_t R1, size_t C1,
     typename = typename enable_if<C == R1>::type>
     
-    Matrix<R,C>& operator*=(const Matrix<R1,C1>& m) {
+    Matrix<R,C> operator*=(const Matrix<R1,C1>& m) {
         Vector<C1> tmp[R];
         
         for (int i=0; i < R; i++) {
-            data[i] *= m.data[i];
+            data_[i] *= m.data[i];
         }
         
         return Matrix<R,C1>(tmp);
