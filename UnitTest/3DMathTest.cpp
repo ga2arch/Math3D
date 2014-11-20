@@ -501,6 +501,30 @@ TEST(Matrix, Creation) {
     }
 }
 
+TEST(Matrix, Mul) {
+    Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
+                    Vector<2>(5.0f, 3.0f));
+    
+    Matrix<2,2> m2 (Vector<2>(5.0f, 1.0f),
+                    Vector<2>(2.0f, 3.0f));
+    
+    auto m = m1 * m2;
+    
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f * 5.0f);
+    ASSERT_FLOAT_EQ(t[1], 4.0f * 1.0f);
+
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 5.0f * 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 3.0f * 3.0f);
+    
+    
+}
+
 TEST(Matrix, Identity) {
     auto m = Matrix<4, 4>::identity();
     
@@ -514,6 +538,7 @@ TEST(Matrix, Identity) {
         }
     }
 }
+
 
 // TODO add more
 
@@ -564,6 +589,4 @@ TEST(Quaternion, ToMatrix) {
     ASSERT_FLOAT_EQ(t[0], 2*x*z + 2*y*w);
     ASSERT_FLOAT_EQ(t[1], 2*y*z - 2*x*w);
     ASSERT_FLOAT_EQ(t[2], 1 - 2*x*x - 2*y*y);
-    
-    
 }

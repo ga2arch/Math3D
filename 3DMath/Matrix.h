@@ -50,7 +50,7 @@ public:
         Vector<C1> tmp[R];
         
         for (int i=0; i<R; i++) {
-            tmp[i] = data[i]*m;
+            tmp[i] = data[i] * m.data[i];
         }
         
         return Matrix<R,C1>(tmp);
@@ -62,8 +62,8 @@ public:
     Matrix<R,C>& operator*=(const Matrix<R1,C1>& m) {
         Vector<C1> tmp[R];
         
-        for (auto& e: data) {
-            e *= m;
+        for (int i=0; i < R; i++) {
+            data[i] *= m.data[i];
         }
         
         return Matrix<R,C1>(tmp);
