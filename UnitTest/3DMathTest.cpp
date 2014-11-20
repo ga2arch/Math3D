@@ -538,7 +538,7 @@ TEST(Matrix, Mul) {
 
 TEST(Matrix, Identity) {
     auto m = Matrix<4, 4>::identity();
-    
+
     for (int i=0; i < 4; i++) {
         __declspec(align(16)) float t[4];
         _mm_storer_ps(t, m.data[i].data);
@@ -550,6 +550,21 @@ TEST(Matrix, Identity) {
     }
 }
 
+TEST(Matrix, MulByVector) {
+    Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
+                    Vector<2>(5.0f, 3.0f));
+    
+    Vector<2> v1(5.0f, 1.0f);
+    
+    auto m = v1 * m1;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data);
+    
+    ASSERT_FLOAT_EQ(t[0], 15.0f);
+    ASSERT_FLOAT_EQ(t[1], 23.0f);
+
+}
 
 // TODO add more
 

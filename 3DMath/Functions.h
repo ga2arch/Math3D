@@ -85,8 +85,8 @@ inline Vector<N> lerp(const Vector<N>& v1,
 }
 
 
-template <size_t R, size_t C>
-Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
+template <size_t C>
+Vector<C> operator*(const Vector<4>& v, const Matrix<4,C>& m) {
     const auto xxxx = _mm_replicate_x_ps(v.data);
     const auto yyyy = _mm_replicate_y_ps(v.data);
     const auto zzzz = _mm_replicate_z_ps(v.data);
@@ -100,6 +100,35 @@ Vector<C> operator*(const Vector<R>& v, const Matrix<R,C>& m) {
     auto result = _mm_add_ps(m_row1, m_row2);
     result = _mm_add_ps(result, m_row3);
     result = _mm_add_ps(result, m_row4);
+    
+    return Vector<C>(result);
+}
+
+template <size_t C>
+Vector<C> operator*(const Vector<3>& v, const Matrix<3,C>& m) {
+    const auto xxxx = _mm_replicate_x_ps(v.data);
+    const auto yyyy = _mm_replicate_y_ps(v.data);
+    const auto zzzz = _mm_replicate_z_ps(v.data);
+    
+    const auto m_row1 = _mm_mul_ps(xxxx, m.data[0].data);
+    const auto m_row2 = _mm_mul_ps(yyyy, m.data[1].data);
+    const auto m_row3 = _mm_mul_ps(zzzz, m.data[2].data);
+    
+    auto result = _mm_add_ps(m_row1, m_row2);
+    result = _mm_add_ps(result, m_row3);
+    
+    return Vector<C>(result);
+}
+
+template <size_t C>
+Vector<C> operator*(const Vector<2>& v, const Matrix<2,C>& m) {
+    const auto xxxx = _mm_replicate_x_ps(v.data);
+    const auto yyyy = _mm_replicate_y_ps(v.data);
+    
+    const auto m_row1 = _mm_mul_ps(xxxx, m.data[0].data);
+    const auto m_row2 = _mm_mul_ps(yyyy, m.data[1].data);
+    
+    auto result = _mm_add_ps(m_row1, m_row2);
     
     return Vector<C>(result);
 }

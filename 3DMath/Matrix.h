@@ -29,24 +29,22 @@ public:
         }
     };
     
-    Matrix<R,C>& operator=(const Matrix<R,C>& m) {
+    Matrix& operator=(const Matrix<R,C>& m) {
         std::memset(data_, 0, R);
         std::memcpy(data_, m.data_, R);
         
         return *this;
     }
     
-    Matrix<R,C>& operator*=(const float s) {
+    Matrix& operator*=(const float s) {
         for (auto& e: data_) {
             e *= s;
         }
         return *this;
     }
     
-    template <size_t R1, size_t C1,
-    typename = typename enable_if<C == R1>::type>
-    
-    Matrix<R,C> operator*(const Matrix<R1,C1>& m) {
+    template <size_t C1>
+    Matrix<R,C> operator*(const Matrix<C,C1>& m) {
         Vector<C1> tmp[R];
         
         for (int i=0; i<R; i++) {
@@ -56,10 +54,8 @@ public:
         return Matrix<R,C1>(tmp);
     }
     
-    template <size_t R1, size_t C1,
-    typename = typename enable_if<C == R1>::type>
-    
-    Matrix<R,C> operator*=(const Matrix<R1,C1>& m) {
+    template <size_t C1>
+    Matrix<R,C> operator*=(const Matrix<C,C1>& m) {
         Vector<C1> tmp[R];
         
         for (int i=0; i < R; i++) {
@@ -70,7 +66,7 @@ public:
     }
     
     template <size_t R1 = R, size_t C1 = C,
-    typename = typename enable_if<R1 == C1>::type>
+    typename = typename std::enable_if<R1==C1>::type>
     
     static Matrix<R,R> identity() {
         Vector<R> tmp[R];
