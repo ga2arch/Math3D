@@ -36,9 +36,61 @@ public:
         return *this;
     }
     
-    Matrix& operator*=(const float s) {
+    template <size_t C1>
+    Matrix<R,C> operator+=(const Matrix<C,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i < R; i++) {
+            data_[i] += m.data[i];
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+    
+    template <size_t C1>
+    Matrix<R,C> operator+(const Matrix<C,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i < R; i++) {
+            tmp[i] = data[i] + m.data[i];
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+    
+    Matrix& operator-=(const float s) {
         for (auto& e: data_) {
             e *= s;
+        }
+        return *this;
+    }
+    
+    template <size_t C1>
+    Matrix<R,C> operator-(const Matrix<C,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i < R; i++) {
+            tmp[i] = data[i] - m.data[i];
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+    
+    template <size_t C1>
+    Matrix<R,C> operator-=(const Matrix<C,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i < R; i++) {
+            data_[i] -= m.data[i];
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+
+    
+    Matrix& operator*=(const float s) {
+        for (auto& e: data_) {
+            e -= s;
         }
         return *this;
     }
@@ -63,6 +115,13 @@ public:
         }
         
         return Matrix<R,C1>(tmp);
+    }
+    
+    Matrix& operator/=(const float s) {
+        for (auto& e: data_) {
+            e /= s;
+        }
+        return *this;
     }
     
     template <size_t C1>
