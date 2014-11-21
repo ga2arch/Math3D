@@ -78,6 +78,12 @@ Vector<N> operator*(const Vector<N>& v1, const Vector<N>& v2) {
 }
 
 template <size_t N>
+Vector<N> operator/(const Vector<N>& v1, const Vector<N>& v2) {
+    const auto data = _mm_div_ps(v1.data, v2.data);
+    return Vector<N>(data);
+}
+
+template <size_t N>
 inline Vector<N> lerp(const Vector<N>& v1,
                       const Vector<N>& v2,
                       const float b) {
