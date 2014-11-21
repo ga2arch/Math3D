@@ -97,7 +97,7 @@ public:
     
     Matrix& operator*=(const float s) {
         for (auto& e: data_) {
-            e -= s;
+            e *= s;
         }
         return *this;
     }

@@ -65,9 +65,16 @@ inline __m128 abs_cross(const Vector<N>& v1, const Vector<N>& v2) {
 }
 
 template <size_t N>
-Vector<N> operator*(const float s, Vector<N>& v) {
+Vector<N> operator*(const float s, const Vector<N>& v) {
     const auto tmp = _mm_set_ps1(s);
     const auto data = _mm_mul_ps(tmp, v.data);
+    return Vector<N>(data);
+}
+
+template <size_t N>
+Vector<N> operator*(const Vector<N>& v, const float s) {
+    const auto tmp = _mm_set_ps1(s);
+    const auto data = _mm_mul_ps(v.data, tmp);
     return Vector<N>(data);
 }
 
@@ -100,6 +107,13 @@ Vector<N> operator-(const Vector<N>& v1, const Vector<N>& v2) {
 template <size_t N>
 Vector<N> operator*(const Vector<N>& v1, const Vector<N>& v2) {
     const auto data = _mm_mul_ps(v1.data, v2.data);
+    return Vector<N>(data);
+}
+
+template <size_t N>
+Vector<N> operator/(const Vector<N>& v, const float s) {
+    const auto tmp = _mm_set_ps1(s);
+    const auto data = _mm_div_ps(v.data, tmp);
     return Vector<N>(data);
 }
 
@@ -276,6 +290,50 @@ Matrix<R,C> operator-(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
     
     for (int i=0; i < R; i++) {
         tmp[i] = m1.data[i] - m2.data[i];
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator*(const Matrix<R,C>& m1, const float s) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] * s;
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator*(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] * m2.data[i];
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator/(const Matrix<R,C>& m1, const float s) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] / s;
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator/(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] / m2.data[i];
     }
     
     return Matrix<R,C>(tmp);
