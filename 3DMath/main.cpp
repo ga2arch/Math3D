@@ -29,6 +29,8 @@ int main(int argc, const char * argv[]) {
     Matrix<2,3> m0{v1,v1};
     Matrix<3,3> m1{v1,v1,v1};
     
+    float v1_n[4] = {2.0f, 3.0f, 10.0f, 8.0f};
+    
     
     
     //auto id = Matrix<4,4>::identity();
@@ -41,14 +43,25 @@ int main(int argc, const char * argv[]) {
 //    debug(b);
     
     auto t2 = high_resolution_clock::now();
-    auto result = q*q1;
+    
+    v4 *= v4;
 
-    auto duration = duration_cast<chrono::duration<double>>( t2 - t1 ).count();
+    auto duration1 = duration_cast<chrono::duration<double>>( t2 - t1 ).count();
     
-    //cout << duration << endl;
+    t2 = high_resolution_clock::now();
     
-    for (auto& e: q.matrix().data)
-        debug(e.data);
+    for (int i=0; i < 4; i++) {
+        v1_n[i] = v1_n[i] * v1_n[i];
+    }
+    
+    auto duration2 = duration_cast<chrono::duration<double>>( t2 - t1 ).count();
+    
+    cout << duration1 << endl;
+
+    cout << duration2 << endl;
+    
+//    for (auto& e: q.matrix().data)
+//        debug(e.data);
     
 }
 

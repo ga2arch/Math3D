@@ -47,7 +47,7 @@ public:
     Matrix<R,C> operator*(const Matrix<C,C1>& m) {
         Vector<C1> tmp[R];
         
-        for (int i=0; i<R; i++) {
+        for (int i=0; i < R; i++) {
             tmp[i] = data[i] * m.data[i];
         }
         
@@ -64,6 +64,29 @@ public:
         
         return Matrix<R,C1>(tmp);
     }
+    
+    template <size_t C1>
+    Matrix<R,C> operator/(const Matrix<C,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i < R; i++) {
+            tmp[i] = data[i] / m.data[i];
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+    
+    template <size_t C1>
+    Matrix<R,C> operator/=(const Matrix<C,C1>& m) {
+        Vector<C1> tmp[R];
+        
+        for (int i=0; i < R; i++) {
+            data_[i] /= m.data[i];
+        }
+        
+        return Matrix<R,C1>(tmp);
+    }
+
     
     template <size_t R1 = R, size_t C1 = C,
     typename = typename std::enable_if<R1==C1>::type>
