@@ -501,6 +501,70 @@ TEST(Matrix, Creation) {
     }
 }
 
+TEST(Matrix, SumByFloat) {
+    Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
+                    Vector<2>(5.0f, 3.0f));
+    
+    float b = 10;
+    
+    auto m = m1 + b;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f + b);
+    ASSERT_FLOAT_EQ(t[1], 4.0f + b);
+    
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 5.0f + b);
+    ASSERT_FLOAT_EQ(t[1], 3.0f + b);
+    
+    m1 += b;
+    
+    _mm_storer_ps(t, m1.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f + b);
+    ASSERT_FLOAT_EQ(t[1], 4.0f + b);
+    
+    _mm_storer_ps(t, m1.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 5.0f + b);
+    ASSERT_FLOAT_EQ(t[1], 3.0f + b);
+}
+
+TEST(Matrix, SubByFloat) {
+    Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
+                    Vector<2>(5.0f, 3.0f));
+    
+    float b = 10;
+    
+    auto m = m1 - b;
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f - b);
+    ASSERT_FLOAT_EQ(t[1], 4.0f - b);
+    
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 5.0f - b);
+    ASSERT_FLOAT_EQ(t[1], 3.0f - b);
+    
+    m1 -= b;
+    
+    _mm_storer_ps(t, m1.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f - b);
+    ASSERT_FLOAT_EQ(t[1], 4.0f - b);
+    
+    _mm_storer_ps(t, m1.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 5.0f - b);
+    ASSERT_FLOAT_EQ(t[1], 3.0f - b);
+}
+
 TEST(Matrix, Sum) {
     Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
                     Vector<2>(5.0f, 3.0f));

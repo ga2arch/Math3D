@@ -72,8 +72,22 @@ Vector<N> operator*(const float s, Vector<N>& v) {
 }
 
 template <size_t N>
+Vector<N> operator+(const Vector<N>& v1, const float s) {
+    const auto tmp = _mm_set_ps1(s);
+    const auto data = _mm_add_ps(v1.data, tmp);
+    return Vector<N>(data);
+}
+
+template <size_t N>
 Vector<N> operator+(const Vector<N>& v1, const Vector<N>& v2) {
     const auto data = _mm_add_ps(v1.data, v2.data);
+    return Vector<N>(data);
+}
+
+template <size_t N>
+Vector<N> operator-(const Vector<N>& v1, const float s) {
+    const auto tmp = _mm_set_ps1(s);
+    const auto data = _mm_sub_ps(v1.data, tmp);
     return Vector<N>(data);
 }
 
@@ -220,6 +234,53 @@ Vector<N> rotate(const Vector<N>& v, T... tqs) {
     
     return Vector<N>(r);
 }
+
+// Matrix
+
+template <size_t R, size_t C>
+Matrix<R,C> operator+(const Matrix<R,C>& m1, const float s) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] + s;
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator+(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] + m2.data[i];
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator-(const Matrix<R,C>& m1, const float s) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] - s;
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
+template <size_t R, size_t C>
+Matrix<R,C> operator-(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
+    Vector<C> tmp[R];
+    
+    for (int i=0; i < R; i++) {
+        tmp[i] = m1.data[i] - m2.data[i];
+    }
+    
+    return Matrix<R,C>(tmp);
+}
+
 
 #endif
 

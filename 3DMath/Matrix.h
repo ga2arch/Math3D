@@ -36,6 +36,13 @@ public:
         return *this;
     }
     
+    Matrix& operator+=(const float s) {
+        for (auto& e: data_) {
+            e += s;
+        }
+        return *this;
+    }
+    
     template <size_t C1>
     Matrix<R,C> operator+=(const Matrix<C,C1>& m) {
         Vector<C1> tmp[R];
@@ -60,7 +67,7 @@ public:
     
     Matrix& operator-=(const float s) {
         for (auto& e: data_) {
-            e *= s;
+            e -= s;
         }
         return *this;
     }
