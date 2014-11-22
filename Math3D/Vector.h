@@ -36,60 +36,59 @@ namespace Math3D { namespace vector {
         Vector(Vector<N>&& v): data_(std::move(v.data)), data(data_) {};
         Vector(const __m128& d): data_(d), data(data_) {};
 
-        Vector& operator=(const Vector& v) {
+        Vector<N>& operator=(const Vector<N>& v) {
             data_ = v.data;
             return *this;
         }
         
-        Vector& operator=(Vector&& v) {
+        Vector<N>& operator=(Vector<N>&& v) {
             data_ = std::move(v.data);
             return *this;
         }
         
         // By Vector
         
-        Vector& operator+=(const Vector& d) {
+        Vector<N>& operator+=(const Vector<N>& d) {
             data_ = _mm_add_ps(data, d.data);
             return *this;
         }
         
-        Vector& operator-=(const Vector& d) {
+        Vector<N>& operator-=(const Vector<N>& d) {
             data_ = _mm_sub_ps(data, d.data);
             return *this;
         }
         
-        template <size_t N1>
-        Vector<N>& operator*=(const Vector<N1>& d) {
+        Vector<N>& operator*=(const Vector<N>& d) {
             data_ = _mm_mul_ps(data, d.data);
             return *this;
         }
         
-        Vector& operator/=(const Vector& d) {
+        Vector<N>& operator/=(const Vector<N>& d) {
             data_ = _mm_div_ps(data, d.data);
             return *this;
         }
         
         // By Scalar
         
-        Vector& operator+=(const float s) {
+        Vector<N>& operator+=(const float s) {
             auto tmp = _mm_set_ps1(s);
             data_ = _mm_add_ps(data, tmp);
             return *this;
         }
         
-        Vector& operator-=(const float s) {
+        Vector<N>& operator-=(const float s) {
             auto tmp = _mm_set_ps1(s);
             data_ = _mm_sub_ps(data, tmp);
             return *this;
         }
         
-        Vector& operator*=(const float s) {
+        Vector<N>& operator*=(const float s) {
             auto tmp = _mm_set_ps1(s);
             data_ = _mm_mul_ps(tmp, data);
             return *this;
         }
 
-        Vector& operator/=(const float s) {
+        Vector<N>& operator/=(const float s) {
             auto tmp = _mm_set_ps1(s);
             data_ = _mm_div_ps(data, tmp);
             return *this;
