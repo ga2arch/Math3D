@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Ga2 & co. All rights reserved.
 //
 
-#include "3DMathTest.h"
+#include "Math3DTest.h"
 
 // ================ VECTORS ================
 

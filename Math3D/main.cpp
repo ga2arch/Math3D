@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "3DMath.h"
+#include "Math3D.h"
 
 using namespace std;
 using namespace std::chrono;

@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <cmath>
 #include <gtest/gtest.h>
-#include "3DMath.h"
+#include "Math3D.h"
 
 using namespace Math3D::functions;
 using namespace Math3D::vector;
