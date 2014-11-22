@@ -123,8 +123,8 @@ namespace Math3D { namespace matrix {
 using Math3D::matrix::Matrix;
 using Math3D::quaternion::Quaternion;
 
-template<>
-Quaternion Matrix<3,3>::quaternion() {
+template <size_t R, size_t C>
+Quaternion Matrix<R,C>::quaternion() {
     // TODO
     return Quaternion(Vector<3>(1.0f,1.0f,1.0f), 20);
 }

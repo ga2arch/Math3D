@@ -36,6 +36,19 @@ namespace Math3D { namespace quaternion {
             data_ = _mm_move_ss(v.data, angle);
         }
 
+        Quaternion(const Quaternion& q): data(data_), data_(q.data) {};
+        Quaternion(Quaternion&& q): data(data_), data_(std::move(q.data)) {};
+        
+        Quaternion& operator=(const Quaternion& q) {
+            data_ = q.data;
+            return *this;
+        }
+        
+        Quaternion& operator=(Quaternion&& q) {
+            data_ = std::move(q.data);
+            return *this;
+        }
+        
         Matrix<3,3> matrix() {
             return matrix(true);
         }

@@ -729,7 +729,7 @@ TEST(Matrix, Mul) {
     ASSERT_FLOAT_EQ(t[1], 14.0f);
 }
 
-//TEST(Matrix, Div) {
+//TEST(Matrix, DISABLED_Div) {
 //    Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
 //                    Vector<2>(5.0f, 3.0f));
 //    
