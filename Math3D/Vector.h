@@ -36,12 +36,12 @@ namespace Math3D { namespace vector {
         Vector(Vector<N>&& v): data_(std::move(v.data)), data(data_) {};
         Vector(const __m128& d): data_(d), data(data_) {};
 
-        Vector& operator=(const Vector<N>& v) {
+        Vector& operator=(const Vector& v) {
             data_ = v.data;
             return *this;
         }
         
-        Vector& operator=(Vector<N>&& v) {
+        Vector& operator=(Vector&& v) {
             data_ = std::move(v.data);
             return *this;
         }

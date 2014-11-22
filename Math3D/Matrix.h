@@ -93,18 +93,9 @@ namespace Math3D { namespace matrix {
             return *this;
         }
 
-//        template <size_t R1=R, size_t C1=C, size_t C2>
-//        Matrix<R1,C1>& operator*=(const Matrix<C1,C2>& m);
-//        
-//        template <size_t C1>
-//        Matrix<R,C>& operator/=(const Matrix<C,C1>& m) {
-//            for (int i=0; i < R; i++) {
-//                data_[i] /= m.data[i];
-//            }
-//            
-//            return *this;
-//        }
-        
+        template <size_t C1>
+        Matrix<R,C>& operator*=(const Matrix<C,C1>& m);
+       
         template <size_t R1 = R, size_t C1 = C,
         typename = typename std::enable_if<R1==C1>::type>
         
@@ -135,8 +126,21 @@ using Math3D::quaternion::Quaternion;
 
 template<>
 Quaternion Matrix<3,3>::quaternion() {
-    
+    // TODO
     return Quaternion(Vector<3>(1.0f,1.0f,1.0f), 20);
+}
+
+#include "Functions.h"
+using namespace Math3D::functions;
+
+template <size_t R, size_t C>
+template <size_t C1>
+Matrix<R,C>& Matrix<R,C>::operator*=(const Matrix<C,C1>& m) {
+    for (int i=0; i < R; i++) {
+        data_[i] = data[i] * m;
+    }
+    
+    return *this;
 }
 
 #endif

@@ -716,17 +716,17 @@ TEST(Matrix, Mul) {
     ASSERT_FLOAT_EQ(t[0], 31.0f);
     ASSERT_FLOAT_EQ(t[1], 14.0f);
     
-//    m1 *= m2;
-//    
-//    _mm_storer_ps(t, m.data[0].data);
-//    
-//    ASSERT_FLOAT_EQ(t[0], 18.0f);
-//    ASSERT_FLOAT_EQ(t[1], 14.0f);
-//    
-//    _mm_storer_ps(t, m.data[1].data);
-//    
-//    ASSERT_FLOAT_EQ(t[0], 31.0f);
-//    ASSERT_FLOAT_EQ(t[1], 14.0f);
+    m1 *= m2;
+    
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 18.0f);
+    ASSERT_FLOAT_EQ(t[1], 14.0f);
+    
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 31.0f);
+    ASSERT_FLOAT_EQ(t[1], 14.0f);
 }
 
 //TEST(Matrix, Div) {
