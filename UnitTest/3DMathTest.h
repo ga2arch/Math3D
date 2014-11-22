@@ -14,4 +14,9 @@
 #include <gtest/gtest.h>
 #include "3DMath.h"
 
+using namespace Math3D::functions;
+using namespace Math3D::vector;
+using namespace Math3D::matrix;
+using namespace Math3D::quaternion;
+
 #endif /* defined(___DMath__VectorTest__) */

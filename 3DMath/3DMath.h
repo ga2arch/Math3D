@@ -14,7 +14,6 @@
 #include "SSEFun.h"
 #include "Utils.h"
 
-
 #include "Vector.h"
 #include "Matrix.h"
 #include "Quaternion.h"

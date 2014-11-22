@@ -14,6 +14,9 @@
 using namespace std;
 using namespace std::chrono;
 
+using namespace Math3D::functions;
+using namespace Math3D::vector;
+
 int main(int argc, const char * argv[]) {
     auto t1 = high_resolution_clock::now();
     
@@ -31,7 +34,7 @@ int main(int argc, const char * argv[]) {
     
     float v1_n[4] = {2.0f, 3.0f, 10.0f, 8.0f};
     
-    
+    auto r = m1 + m1;
     
     //auto id = Matrix<4,4>::identity();
     //auto _q = v3*v4;
