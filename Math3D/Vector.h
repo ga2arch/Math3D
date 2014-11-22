@@ -58,7 +58,8 @@ namespace Math3D { namespace vector {
             return *this;
         }
         
-        Vector& operator*=(const Vector& d) {
+        template <size_t N1>
+        Vector<N>& operator*=(const Vector<N1>& d) {
             data_ = _mm_mul_ps(data, d.data);
             return *this;
         }

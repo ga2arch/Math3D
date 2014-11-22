@@ -138,7 +138,7 @@ namespace Math3D { namespace functions {
                           const float b) {
         return (1-b)*v1 + b*v2;
     }
-
+    
     template <size_t C>
     Vector<C> operator*(const Vector<4>& v, const Matrix<4,C>& m) {
         const auto xxxx = _mm_replicate_x_ps(v.data);
@@ -319,7 +319,7 @@ namespace Math3D { namespace functions {
         Vector<C> tmp[R];
         
         for (int i=0; i < R; i++) {
-            tmp[i] = m1.data[i] * m2.data[i];
+            tmp[i] = m1.data[i] * m2;
         }
         
         return Matrix<R,C>(tmp);
@@ -336,16 +336,16 @@ namespace Math3D { namespace functions {
         return Matrix<R,C>(tmp);
     }
 
-    template <size_t R, size_t C>
-    Matrix<R,C> operator/(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
-        Vector<C> tmp[R];
-        
-        for (int i=0; i < R; i++) {
-            tmp[i] = m1.data[i] / m2.data[i];
-        }
-        
-        return Matrix<R,C>(tmp);
-    }
+//    template <size_t R, size_t C>
+//    Matrix<R,C> operator/(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
+//        Vector<C> tmp[R];
+//        
+//        for (int i=0; i < R; i++) {
+//            tmp[i] = m1.data[i] / m2.data[i];
+//        }
+//        
+//        return Matrix<R,C>(tmp);
+//    }
 
 }}
 

@@ -278,6 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				OTHER_CPLUSPLUSFLAGS = "-msse4.1";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Math3D;
