@@ -35,7 +35,7 @@ namespace Math3D { namespace matrix {
             }
         };
         
-        Matrix& operator=(const Matrix<R,C>& m) {
+        Matrix<R,C>& operator=(const Matrix<R,C>& m) {
             std::memset(data_, 0, R);
             std::memcpy(data_, m.data_, R);
             
@@ -44,28 +44,28 @@ namespace Math3D { namespace matrix {
         
         // By Scalar
         
-        Matrix& operator+=(const float s) {
+        Matrix<R,C>& operator+=(const float s) {
             for (auto& e: data_) {
                 e += s;
             }
             return *this;
         }
         
-        Matrix& operator-=(const float s) {
+        Matrix<R,C>& operator-=(const float s) {
             for (auto& e: data_) {
                 e -= s;
             }
             return *this;
         }
         
-        Matrix& operator*=(const float s) {
+        Matrix<R,C>& operator*=(const float s) {
             for (auto& e: data_) {
                 e *= s;
             }
             return *this;
         }
         
-        Matrix& operator/=(const float s) {
+        Matrix<R,C>& operator/=(const float s) {
             for (auto& e: data_) {
                 e /= s;
             }

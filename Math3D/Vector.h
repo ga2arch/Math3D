@@ -43,7 +43,6 @@ namespace Math3D { namespace vector {
         
         Vector<N>& operator=(Vector<N>&& v) {
             data_ = std::move(v.data);
-            std::cout << "MOVING\n";
             return *this;
         }
         
