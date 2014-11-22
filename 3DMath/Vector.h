@@ -15,7 +15,7 @@ namespace Math3D { namespace vector {
         
     template <size_t N>
     class Vector {
-        
+
     public:
         
         template <typename... T,
@@ -113,7 +113,6 @@ namespace Math3D { namespace vector {
         
     protected:
         __m128 data_;
-
     };
 
     template<>

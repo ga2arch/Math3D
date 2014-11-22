@@ -10,11 +10,14 @@
 #define functions_h_
 
 namespace Math3D { namespace functions {
+    using namespace utils;
+    
+    using vector::Vector;
+    using vector::Vec3;
 
-    using namespace vector;
-    using namespace matrix;
-    using namespace quaternion;
-        
+    using matrix::Matrix;
+    using quaternion::Quaternion;
+    
     // Generic
     __m128 dot(const __m128& p, const __m128& q) {
     #ifndef __SSE4_1__

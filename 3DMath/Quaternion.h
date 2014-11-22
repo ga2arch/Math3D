@@ -11,8 +11,10 @@
 
 namespace Math3D { namespace quaternion {
 
-    using namespace vector;
-    using namespace matrix;
+    using namespace utils;
+    
+    using vector::Vec3;
+    using matrix::Matrix;
 
     class Quaternion {
         

@@ -9,13 +9,19 @@
 #ifndef matrix_h_
 #define matrix_h_
 
-namespace Math3D { namespace matrix {
+namespace Math3D { namespace quaternion {
+    class Quaternion;
+}}
 
-    using namespace vector;
-        
+namespace Math3D { namespace matrix {
+    using namespace utils;
+
+    using vector::Vector;
+    using quaternion::Quaternion;
+    
     template <size_t R, size_t C>
     class Matrix {
-        
+
     public:
         template <typename... T,
         typename = typename std::enable_if<(sizeof...(T) == R
@@ -127,12 +133,25 @@ namespace Math3D { namespace matrix {
             return Matrix<R,R>(tmp);
         }
         
+        Quaternion quaternion();
+        
         const Vector<C> (&data)[R];
         
     private:
         Vector<C> data_[R];
     };
-
-}}
     
+}}
+
+#include "Quaternion.h"
+using Math3D::matrix::Matrix;
+using Math3D::quaternion::Quaternion;
+
+template<>
+Quaternion Matrix<3,3>::quaternion() {
+    
+    return Quaternion(Vector<3>(1.0f,1.0f,1.0f), 20);
+}
+
+
 #endif
