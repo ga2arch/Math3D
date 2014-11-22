@@ -16,8 +16,7 @@ namespace Math3D { namespace quaternion {
 namespace Math3D { namespace matrix {
     using namespace utils;
 
-    
-    using namespace vector;
+    using vector::Vector;
     using quaternion::Quaternion;
     
     template <size_t R, size_t C>
@@ -131,7 +130,7 @@ Quaternion Matrix<3,3>::quaternion() {
 }
 
 #include "Functions.h"
-using namespace Math3D::functions;
+using Math3D::functions::operator*;
 
 template <size_t R, size_t C>
 template <size_t C1>
