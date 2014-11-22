@@ -11,16 +11,14 @@
 
 class Quaternion;
 
-using namespace std;
-
 template <size_t R, size_t C>
 class Matrix {
     
 public:
     template <typename... T,
-    typename = typename enable_if<(sizeof...(T) == R
-                                   && R < 5 && R > 0
-                                   && are_same<Vector<C>, T...>::value) >::type>
+    typename = typename std::enable_if<(sizeof...(T) == R
+                                        && R < 5 && R > 0
+                                        && are_same<Vector<C>, T...>::value) >::type>
     Matrix(T... rows): data_{rows...}, data(data_) {};
     
     Matrix(Vector<C> (&vs)[R]): data(data_) {

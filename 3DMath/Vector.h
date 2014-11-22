@@ -9,17 +9,15 @@
 #ifndef vector_h_
 #define vector_h_
 
-using namespace std;
-
 template <size_t N>
 class Vector {
     
 public:
     
     template <typename... T,
-    typename = typename enable_if<(sizeof...(T) == N
-                                   && N < 5 && N > 0
-                                   && are_same<float, T...>::value) >::type>
+    typename = typename std::enable_if<(sizeof...(T) == N
+                                        && N < 5 && N > 0
+                                        && are_same<float, T...>::value) >::type>
     Vector(T... cps): data(data_) {
         __declspec(align(16)) float t[4] = {cps...};
         data_ = _mm_loadr_ps(t);
