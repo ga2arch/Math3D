@@ -278,8 +278,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.2;
 				GCC_OPTIMIZATION_LEVEL = 2;
-				OTHER_CPLUSPLUSFLAGS = "-msse4.1";
+				GCC_VERSION = "";
+				GCC_WARN_PEDANTIC = YES;
+				ICC_OTHER_CPLUSPLUSFLAGS = "-std=c++11";
+				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Math3D;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -290,7 +294,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				OTHER_CPLUSPLUSFLAGS = "-msse4.1";
+				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.2;
+				GCC_VERSION = "";
+				GCC_WARN_PEDANTIC = YES;
+				ICC_OTHER_CPLUSPLUSFLAGS = "-std=c++11";
+				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Math3D;
 				USER_HEADER_SEARCH_PATHS = "";

@@ -51,7 +51,7 @@ int main(int argc, const char * argv[]) {
     
     auto t2 = high_resolution_clock::now();
     
-    m1 *= m0;
+    //m1 *= m0;
 
     auto duration1 = duration_cast<chrono::duration<double>>( t2 - t1 ).count();
     
