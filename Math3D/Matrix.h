@@ -74,8 +74,7 @@ namespace Math3D { namespace matrix {
         
         // By Matrix
         
-        template <size_t C1>
-        Matrix<R,C>& operator+=(const Matrix<C,C1>& m) {
+        Matrix<R,C>& operator+=(const Matrix<R,C>& m) {
             for (int i=0; i < R; i++) {
                 data_[i] += m.data[i];
             }
@@ -83,8 +82,7 @@ namespace Math3D { namespace matrix {
             return *this;
         }
         
-        template <size_t C1>
-        Matrix<R,C>& operator-=(const Matrix<C,C1>& m) {
+        Matrix<R,C>& operator-=(const Matrix<R,C>& m) {
             for (int i=0; i < R; i++) {
                 data_[i] -= m.data[i];
             }
