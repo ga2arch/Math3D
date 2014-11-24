@@ -22,7 +22,7 @@ namespace Math3D { namespace vector {
     class Vector {
 
         template <size_t R, size_t C> friend class Math3D::matrix::Matrix;
-        
+
     public:
         
         template <typename... T,

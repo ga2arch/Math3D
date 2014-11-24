@@ -106,12 +106,35 @@ namespace Math3D { namespace matrix {
             return Matrix<R,R>(tmp);
         }
         
-        Matrix<4,4>& transpose() {
-            _MM_TRANSPOSE4_PS(data_[3].data_,
-                              data_[2].data_,
-                              data_[1].data_,
-                              data_[0].data_);
-            return *this;
+        Matrix<R,R>& transpose() {
+            if (R == 4) {
+                _MM_TRANSPOSE4_PS(data_[3].data_,
+                                  data_[2].data_,
+                                  data_[1].data_,
+                                  data_[0].data_);
+                return *this;
+            } else {
+                __m128* temp[4];
+                __m128  zeros[3] = {_mm_setzero_ps(),
+                                    _mm_setzero_ps(),
+                                    _mm_setzero_ps()};
+                auto i = 0;
+                
+                for (i=0; i < R; i++) {
+                    temp[i] = &data_[i].data_;
+                }
+                
+                for (auto j=0; i <= 4; i++) {
+                    temp[i] = &zeros[j];
+                    j++;
+                }
+                
+                _MM_TRANSPOSE4_PS(*temp[3],
+                                  *temp[2],
+                                  *temp[1],
+                                  *temp[0]);
+                return *this;
+            }
         }
         
         Quaternion quaternion();
