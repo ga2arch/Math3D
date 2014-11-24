@@ -9,6 +9,11 @@
 #ifndef vector_h_
 #define vector_h_
 
+namespace Math3D { namespace matrix {
+    template <size_t R, size_t C>
+    class Matrix;
+}}
+
 namespace Math3D { namespace vector {
 
     using namespace utils;
@@ -16,6 +21,8 @@ namespace Math3D { namespace vector {
     template <size_t N>
     class Vector {
 
+        template <size_t R, size_t C> friend class Math3D::matrix::Matrix;
+        
     public:
         
         template <typename... T,

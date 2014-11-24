@@ -792,6 +792,44 @@ TEST(Matrix, MulByVector) {
 
 }
 
+TEST(Matrix, Transpose) {
+    Matrix<4,4> m1 (Vector<4>(2.0f, 4.0f, 5.0f, 7.0f),
+                   Vector<4>(5.0f, 3.0f, 9.0f, 8.0f),
+                   Vector<4>(7.0f, 3.0f, 1.0f, 3.0f),
+                   Vector<4>(7.0f, 3.0f, 5.0f, 3.0f));
+    
+    auto m = m1.transpose();
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 5.0f);
+    ASSERT_FLOAT_EQ(t[2], 7.0f);
+    ASSERT_FLOAT_EQ(t[3], 7.0f);
+
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 4.0f);
+    ASSERT_FLOAT_EQ(t[1], 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 3.0f);
+    
+    _mm_storer_ps(t, m.data[2].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 5.0f);
+    ASSERT_FLOAT_EQ(t[1], 9.0f);
+    ASSERT_FLOAT_EQ(t[2], 1.0f);
+    ASSERT_FLOAT_EQ(t[3], 5.0f);
+    
+    _mm_storer_ps(t, m.data[3].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 7.0f);
+    ASSERT_FLOAT_EQ(t[1], 8.0f);
+    ASSERT_FLOAT_EQ(t[2], 3.0f);
+    ASSERT_FLOAT_EQ(t[3], 3.0f);
+}
+
 // TODO add more
 
 // ================ QUATERNION ================
