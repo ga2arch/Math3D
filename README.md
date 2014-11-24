@@ -1,7 +1,8 @@
 Math3D
 ======
 
-Little library to implement math functions necessary for 3d games using SSE instructions 
+Little library for my future game engine, implementing useful math functions and structures like matrix/vector using 
+SSE intrinsics.
 
 ```
 [==========] Running 32 tests from 4 test cases.  
