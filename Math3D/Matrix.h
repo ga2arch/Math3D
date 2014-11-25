@@ -112,6 +112,13 @@ namespace Math3D { namespace matrix {
             return m;
         }
         
+        static Matrix<4,4> translation(const Vector<3>& v) {
+            auto m = Matrix<4,4>::identity();
+            auto d = _mm_move_ss(v.data_, _mm_set1_ps(1.0f));
+            m.data_[3] = Vector<4>(d);
+            return m;
+        }
+        
         Matrix<R,R>& transpose() {
             if (R == 4) {
                 _MM_TRANSPOSE4_PS(data_[3].data_,
