@@ -858,6 +858,40 @@ TEST(Matrix, Transpose3x3) {
 
 }
 
+TEST(Matrix, TraslationByFloat) {
+    auto m = Matrix<4,4>::translation(2.0f, 3.0f, 7.0f);
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 1.0f);
+    ASSERT_FLOAT_EQ(t[1], 0.0f);
+    ASSERT_FLOAT_EQ(t[2], 0.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
+
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 0.0f);
+    ASSERT_FLOAT_EQ(t[1], 1.0f);
+    ASSERT_FLOAT_EQ(t[2], 0.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
+    
+    _mm_storer_ps(t, m.data[2].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 0.0f);
+    ASSERT_FLOAT_EQ(t[1], 0.0f);
+    ASSERT_FLOAT_EQ(t[2], 1.0f);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
+
+    _mm_storer_ps(t, m.data[3].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 7.0f);
+    ASSERT_FLOAT_EQ(t[3], 1.0f);
+    
+}
+
 
 // TODO add more
 
