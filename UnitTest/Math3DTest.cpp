@@ -24,6 +24,20 @@ TEST(Vector4Test, Creation) {
     }
 }
 
+TEST(Vector4Test, ToArray) {
+    
+    Vector<4> v(1.0f,3.0f,5.0f,9.0f);
+    
+    __declspec(align(16)) float t[4];
+    float m[4] = { 1.0f,3.0f,5.0f,9.0f };
+    
+    v.to_array(t);
+    
+    for (int i=0; i < 4; i++) {
+        ASSERT_EQ(t[i], m[i]);
+    }
+}
+
 TEST(Vector4Test, SumByFloat) {
     
     Vector<4> v1(1.0f,2.0f,5.0f,6.0f);

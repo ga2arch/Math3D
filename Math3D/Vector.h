@@ -8,6 +8,7 @@
 
 #ifndef vector_h_
 #define vector_h_
+#include <array>
 
 namespace Math3D { namespace matrix {
     template <size_t R, size_t C>
@@ -15,7 +16,7 @@ namespace Math3D { namespace matrix {
 }}
 
 namespace Math3D { namespace vector {
-
+    
     using namespace utils;
         
     template <size_t N>
@@ -101,6 +102,7 @@ namespace Math3D { namespace vector {
             return *this;
         }
         
+        //
         __m128 squared_magnitude() const {
             // (1,2,3,4) * (1,2,3,4) = (1,4,9,16)
             auto exp = _mm_mul_ps(data, data);
@@ -114,6 +116,10 @@ namespace Math3D { namespace vector {
         
         __m128 magnitude() const {
             return _mm_sqrt_ps(squared_magnitude());
+        }
+        
+        void to_array(float (&a)[4]) {
+            _mm_storer_ps(a, data_);
         }
         
         const __m128& data;
