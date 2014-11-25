@@ -90,7 +90,7 @@ namespace Math3D { namespace matrix {
             return *this;
         }
 
-        Matrix<R,C> operator*=(const Matrix<R,C>& m);
+        Matrix<R,C>& operator*=(const Matrix<R,C>& m);
        
         template <size_t R1 = R, size_t C1 = C,
         typename = typename std::enable_if<R1==C1>::type>
@@ -104,6 +104,12 @@ namespace Math3D { namespace matrix {
             }
             
             return Matrix<R,R>(tmp);
+        }
+        
+        static Matrix<4,4> translation(float x, float y, float z) {
+            auto m = Matrix<4,4>::identity();
+            m.data_[3] = Vector<4>(x, y, z, 1.0f);
+            return m;
         }
         
         Matrix<R,R>& transpose() {
@@ -161,7 +167,7 @@ Quaternion Matrix<R,C>::quaternion() {
 using Math3D::functions::operator*;
 
 template <size_t R, size_t C>
-Matrix<R,C> Matrix<R,C>::operator*=(const Matrix<R,C>& m) {
+Matrix<R,C>& Matrix<R,C>::operator*=(const Matrix<R,C>& m) {
     for (int i=0; i < R; i++) {
         data_[i] = data_[i] * m;
     }
