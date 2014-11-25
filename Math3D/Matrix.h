@@ -92,6 +92,8 @@ namespace Math3D { namespace matrix {
 
         Matrix<R,C>& operator*=(const Matrix<R,C>& m);
        
+        // Static Constructos
+        
         template <size_t R1 = R, size_t C1 = C,
         typename = typename std::enable_if<R1==C1>::type>
         
@@ -118,6 +120,8 @@ namespace Math3D { namespace matrix {
             m.data_[3] = Vector<4>(d);
             return m;
         }
+        
+        //
         
         Matrix<R,R>& transpose() {
             if (R == 4) {
@@ -151,6 +155,12 @@ namespace Math3D { namespace matrix {
         }
         
         Quaternion quaternion();
+        
+        void to_array(float (&m)[R][C]) {
+            for (int i=0; i < R; i++) {
+                data_[i].to_array(m[i]);
+            }
+        }
         
         const Vector<C> (&data)[R];
         

@@ -515,6 +515,24 @@ TEST(Matrix, Creation) {
     }
 }
 
+TEST(Matrix, ToArray) {
+    
+    Matrix<4,4> m (Vector<4>(1.0f, 1.0f, 1.0f, 1.0f),
+                   Vector<4>(1.0f, 1.0f, 1.0f, 1.0f),
+                   Vector<4>(1.0f, 1.0f, 1.0f, 1.0f),
+                   Vector<4>(1.0f, 1.0f, 1.0f, 1.0f));
+    
+    
+    __declspec(align(16)) float t[4][4];
+    m.to_array(t);
+    
+    for (int i=0; i < 4; i++) {
+        for (int j=0; j < 4; j++) {
+            ASSERT_FLOAT_EQ(t[i][j], 1.0f);
+        }
+    }
+}
+
 TEST(Matrix, SumByFloat) {
     Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
                     Vector<2>(5.0f, 3.0f));
