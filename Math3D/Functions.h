@@ -54,8 +54,8 @@ namespace Math3D { namespace functions {
     template <size_t N>
     Vector<N> normalize(const Vector<N>& v) {
         const auto m = v.magnitude();
-//        const auto r = _mm_rcp_ps(m);
-        return Vector<N>(_mm_div_ps(v.data, m));
+        const auto r = _mm_rcp_ps(m);
+        return Vector<N>(_mm_mul_ps(r, v.data));
     }
 
     template <size_t N>
