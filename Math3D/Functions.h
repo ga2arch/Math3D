@@ -13,6 +13,7 @@ namespace Math3D { namespace functions {
     using namespace utils;
     
     using vector::Vector;
+    using vector::Point;
     using vector::Vec3;
 
     using matrix::Matrix;
@@ -35,13 +36,13 @@ namespace Math3D { namespace functions {
     }
 
     __m128 cross(const __m128& p, const __m128& q) {
-        auto sh1 = _mm_shuffle_ps(p, p, _MM_SHUFFLE(0,3,1,2));
-        auto sh2 = _mm_shuffle_ps(q, q, _MM_SHUFFLE(0,2,3,1));
+        auto sh1 = _mm_shuffle_ps(p, p, _MM_SHUFFLE(2,1,3,0));
+        auto sh2 = _mm_shuffle_ps(q, q, _MM_SHUFFLE(1,3,2,0));
         
         const auto mul1 = _mm_mul_ps(sh1, sh2);
         
-        sh1 = _mm_shuffle_ps(q, q, _MM_SHUFFLE(0,3,1,2));
-        sh2 = _mm_shuffle_ps(p, p, _MM_SHUFFLE(0,2,3,1));
+        sh1 = _mm_shuffle_ps(q, q, _MM_SHUFFLE(2,1,3,0));
+        sh2 = _mm_shuffle_ps(p, p, _MM_SHUFFLE(1,3,2,0));
         
         const auto mul2 = _mm_mul_ps(sh1, sh2);
         
@@ -53,8 +54,8 @@ namespace Math3D { namespace functions {
     template <size_t N>
     Vector<N> normalize(const Vector<N>& v) {
         const auto m = v.magnitude();
-        const auto r = _mm_rcp_ps(m);
-        return Vector<N>(_mm_mul_ps(r, v.data));
+//        const auto r = _mm_rcp_ps(m);
+        return Vector<N>(_mm_div_ps(v.data, m));
     }
 
     template <size_t N>
@@ -64,8 +65,8 @@ namespace Math3D { namespace functions {
 
 
     template <size_t N>
-    __m128 cross(const Vector<N>& v1, const Vector<N>& v2) {
-        return cross(v1.data, v2.data);
+    Vector<N> cross(const Vector<N>& v1, const Vector<N>& v2) {
+        return Vector<N>(cross(v1.data, v2.data));
     }
 
     template <size_t N>
@@ -335,18 +336,7 @@ namespace Math3D { namespace functions {
         
         return Matrix<R,C>(tmp);
     }
-
-//    template <size_t R, size_t C>
-//    Matrix<R,C> operator/(const Matrix<R,C>& m1, const Matrix<R,C>& m2) {
-//        Vector<C> tmp[R];
-//        
-//        for (int i=0; i < R; i++) {
-//            tmp[i] = m1.data[i] / m2.data[i];
-//        }
-//        
-//        return Matrix<R,C>(tmp);
-//    }
-
+    
 }}
 
 #endif

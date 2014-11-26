@@ -29,10 +29,15 @@ int main(int argc, const char * argv[]) {
     Vec4 v3(7.0f, 4.0f, 3.0f, 1.0f);
     Vec4 v4(9.0f, 8.0f, 2.0f, 5.0f);
     
-    Matrix<3,2> m0{Vec2(1.0f, 5.0f),Vec2(9.0f, 2.3f), Vec2(9.0f, 2.3f)};
+    Matrix<3,2> m0{Vec2(1.0f, 5.0f),
+                   Vec2(9.0f, 2.3f),
+                   Vec2(9.0f, 2.3f)};
+    
     Matrix<3,3> m1{v1,v1,v1};
     
-    float m1_n[3][3] = {{8.0f, 9.0f, 3.0f},{8.0f, 9.0f, 3.0f},{8.0f, 9.0f, 3.0f}};
+    float m1_n[3][3] = {{8.0f, 9.0f, 3.0f},
+                        {8.0f, 9.0f, 3.0f},
+                        {8.0f, 9.0f, 3.0f}};
     
     float v1_n[4] = {2.0f, 3.0f, 10.0f, 8.0f};
     float v2_n[4] = {2.0f, 3.0f, 10.0f, 8.0f};

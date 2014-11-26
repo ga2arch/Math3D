@@ -761,39 +761,6 @@ TEST(Matrix, Mul) {
     ASSERT_FLOAT_EQ(t[1], 14.0f);
 }
 
-//TEST(Matrix, DISABLED_Div) {
-//    Matrix<2,2> m1 (Vector<2>(2.0f, 4.0f),
-//                    Vector<2>(5.0f, 3.0f));
-//    
-//    Matrix<2,2> m2 (Vector<2>(5.0f, 1.0f),
-//                    Vector<2>(2.0f, 3.0f));
-//    
-//    auto m = m1 / m2;
-//    
-//    __declspec(align(16)) float t[4];
-//    _mm_storer_ps(t, m.data[0].data);
-//    
-//    ASSERT_FLOAT_EQ(t[0], 2.0f / 5.0f);
-//    ASSERT_FLOAT_EQ(t[1], 4.0f / 1.0f);
-//    
-//    _mm_storer_ps(t, m.data[1].data);
-//    
-//    ASSERT_FLOAT_EQ(t[0], 5.0f / 2.0f);
-//    ASSERT_FLOAT_EQ(t[1], 3.0f / 3.0f);
-//    
-//    m1 /= m2;
-//    
-//    _mm_storer_ps(t, m1.data[0].data);
-//    
-//    ASSERT_FLOAT_EQ(t[0], 2.0f / 5.0f);
-//    ASSERT_FLOAT_EQ(t[1], 4.0f / 1.0f);
-//    
-//    _mm_storer_ps(t, m1.data[1].data);
-//    
-//    ASSERT_FLOAT_EQ(t[0], 5.0f / 2.0f);
-//    ASSERT_FLOAT_EQ(t[1], 3.0f / 3.0f);
-//}
-
 TEST(Matrix, Identity) {
     auto m = Matrix<4, 4>::identity();
 
@@ -953,8 +920,46 @@ TEST(Matrix, Traslation) {
     ASSERT_FLOAT_EQ(t[3], 1.0f);
 }
 
+TEST(Matrix, LookAt) {
+    auto m = Matrix<4,4>::look_at(Vec3(2.0f, 3.0f, 2.0f),
+                                  Vec3(3.0f, 4.0f, 2.0f),
+                                  Vec3(1.0f, 7.0f, 9.0f));
 
-// TODO add more
+    float dir[3]    {0.707107, 0.707107, 0};
+    float left[3]   {-0.639602, 0.639602, -0.42640144};
+    float new_up[3] {-0.30151135, 0.30151135, 0.904534};
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, m.data[0].data);
+    
+    ASSERT_FLOAT_EQ(t[0], left[0]);
+    ASSERT_FLOAT_EQ(t[1], left[1]);
+    ASSERT_FLOAT_EQ(t[2], left[2]);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
+    
+    _mm_storer_ps(t, m.data[1].data);
+    
+    ASSERT_FLOAT_EQ(t[0], new_up[0]);
+    ASSERT_FLOAT_EQ(t[1], new_up[1]);
+    ASSERT_FLOAT_EQ(t[2], new_up[2]);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
+    
+    _mm_storer_ps(t, m.data[2].data);
+    
+    ASSERT_FLOAT_EQ(t[0], dir[0]);
+    ASSERT_FLOAT_EQ(t[1], dir[1]);
+    ASSERT_FLOAT_EQ(t[2], dir[2]);
+    ASSERT_FLOAT_EQ(t[3], 0.0f);
+    
+    _mm_storer_ps(t, m.data[3].data);
+    
+    ASSERT_FLOAT_EQ(t[0], 2.0f);
+    ASSERT_FLOAT_EQ(t[1], 3.0f);
+    ASSERT_FLOAT_EQ(t[2], 2.0f);
+    ASSERT_FLOAT_EQ(t[3], 1.0f);
+}
+
+
 
 // ================ QUATERNION ================
 
@@ -1003,4 +1008,20 @@ TEST(Quaternion, ToMatrix) {
     ASSERT_FLOAT_EQ(t[0], 2*x*z + 2*y*w);
     ASSERT_FLOAT_EQ(t[1], 2*y*z - 2*x*w);
     ASSERT_FLOAT_EQ(t[2], 1 - 2*x*x - 2*y*y);
+}
+
+// Functions
+
+TEST(Functions, Cross) {
+    Vector<3> v1{4.0f,  3.0f, 4.0f};
+    Vector<3> v2{10.0f, 3.0f, 4.0f};
+
+    auto r = cross(v1, v2);
+    
+    __declspec(align(16)) float t[4];
+    _mm_storer_ps(t, r.data);
+    
+    ASSERT_FLOAT_EQ(t[0], 0.0f);
+    ASSERT_FLOAT_EQ(t[1], 24.f);
+    ASSERT_FLOAT_EQ(t[2], -18.0f);
 }

@@ -18,5 +18,6 @@ using namespace Math3D::functions;
 using namespace Math3D::vector;
 using namespace Math3D::matrix;
 using namespace Math3D::quaternion;
+using namespace Math3D::functions;
 
 #endif /* defined(___DMath__VectorTest__) */

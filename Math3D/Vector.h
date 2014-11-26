@@ -26,23 +26,32 @@ namespace Math3D { namespace vector {
 
     public:
         
-        template <typename... T,
-        typename = typename std::enable_if<(sizeof...(T) == N
+        template <typename... Args,
+        typename = typename std::enable_if<(sizeof...(Args) == N
                                             && N < 5 && N > 0
-                                            && are_same<float, T...>::value) >::type>
-        Vector(T... cps): data(data_) {
-            __declspec(align(16)) float t[4] = {cps...};
+                                            && are_same<float, Args...>::value) >::type>
+        Vector(Args... args) {
+            __declspec(align(16)) float t[4] = {std::forward<Args>(args)...};
             data_ = _mm_loadr_ps(t);
         };
         
-        Vector(const float (&vs)[4]) : data(data_) {
+        Vector(const float (&vs)[4]) {
             data_ = _mm_loadr_ps(vs);
         }
+        
+        template <typename... Args>
+        Vector(Vector<N-1>&& v, Args... args) {
+            data_ = std::move(v.data);
+            __declspec(align(16)) float t[4] = {std::forward<Args>(args)...};
+            auto temp = _mm_load_ps(t);
+            
+            data_ = _mm_add_ps(data_, temp);
+        }
 
-        Vector(): data(data_) {};
-        Vector(const Vector<N>& v): data_(v.data), data(data_) {};
-        Vector(Vector<N>&& v): data_(std::move(v.data)), data(data_) {};
-        Vector(const __m128& d): data_(d), data(data_) {};
+        Vector() {};
+        Vector(const Vector<N>& v): data_(v.data) {};
+        Vector(Vector<N>&& v): data_(std::move(v.data)) {};
+        Vector(const __m128& d): data_(d) {};
 
         Vector<N>& operator=(const Vector<N>& v) {
             data_ = v.data;
@@ -118,11 +127,16 @@ namespace Math3D { namespace vector {
             return _mm_sqrt_ps(squared_magnitude());
         }
         
+        Vector<N>& normalize() {
+            data_ = _mm_div_ps(data_, magnitude());
+            return *this;
+        }
+        
         void to_array(float (&a)[4]) {
             _mm_storer_ps(a, data_);
         }
         
-        const __m128& data;
+        const __m128& data = data_;
         
     protected:
         __m128 data_;
@@ -143,6 +157,8 @@ namespace Math3D { namespace vector {
     using Vec2 = Vector<2>;
     using Vec3 = Vector<3>;
     using Vec4 = Vector<4>;
+    
+    using Point = Vec3;
 
 }}
     

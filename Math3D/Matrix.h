@@ -17,6 +17,8 @@ namespace Math3D { namespace matrix {
     using namespace utils;
 
     using vector::Vector;
+    using vector::Point;
+
     using quaternion::Quaternion;
     
     template <size_t R, size_t C>
@@ -121,6 +123,11 @@ namespace Math3D { namespace matrix {
             return m;
         }
         
+        static Matrix<4,4> look_at(const Vector<3>& pos,
+                                   const Vector<3>& look,
+                                   const Vector<3>& up);
+
+        
         //
         
         Matrix<R,R>& transpose() {
@@ -162,6 +169,7 @@ namespace Math3D { namespace matrix {
             }
         }
         
+        
         const Vector<C> (&data)[R];
         
     private:
@@ -182,6 +190,9 @@ Quaternion Matrix<R,C>::quaternion() {
 
 #include "Functions.h"
 using Math3D::functions::operator*;
+using Math3D::functions::operator-;
+using Math3D::functions::cross;
+using Math3D::functions::normalize;
 
 template <size_t R, size_t C>
 Matrix<R,C>& Matrix<R,C>::operator*=(const Matrix<R,C>& m) {
@@ -191,5 +202,24 @@ Matrix<R,C>& Matrix<R,C>::operator*=(const Matrix<R,C>& m) {
     
     return *this;
 }
+
+template<>
+Matrix<4,4> Matrix<4,4>::look_at(const Vector<3>& pos,
+                                 const Vector<3>& look,
+                                 const Vector<3>& up) {
+    
+    auto dir = normalize(look - pos);
+
+    auto left = normalize(cross(normalize(up), dir));
+    auto new_up = cross(dir, left);
+    
+    auto row1 = Vector<4>(left.data);
+    auto row2 = Vector<4>(new_up.data);
+    auto row3 = Vector<4>(dir.data);
+    auto row4 = Vector<4>(pos.data, 1.0f);
+    
+    return Matrix<4,4>{row1, row2, row3, row4};
+}
+
 
 #endif
